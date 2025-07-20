@@ -1,38 +1,38 @@
 .header {
-    margin: 47px auto 0;
-    width: 1170px;
-    height: 49px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  margin: 47px auto 0;
+  width: 1170px;
+  height: 49px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    font-size: 20px;
-    letter-spacing: 0.11em;
-    font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 0.11em;
+  font-weight: bold;
 }
 
 .logo img {
-    width: 49px;
-    height: auto;
-    margin-right: 4px;
+  width: 49px;
+  height: auto;
+  margin-right: 4px;
 }
 
 .nav {
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    margin-left: 79px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-left: 79px;
 }
 
 .nav a {
-    margin-right: 37px;
-    cursor: pointer;
+  margin-right: 37px;
+  cursor: pointer;
 }
 
 .phoneNumber {
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
 }

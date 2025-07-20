@@ -1,198 +1,198 @@
 .main {
-    height: auto;
+  height: auto;
 }
 
 .mainOffer {
-    height: 670px;
-    display: flex;
-    justify-content: space-between;
-    gap: 0;
-    margin-bottom: 126px;
+  height: 670px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  margin-bottom: 126px;
 }
 
 .offerContent {
-    width: 500px;
-    height: 328px;
-    margin: 192px 0 150px;
-    flex: 500px;
+  width: 500px;
+  height: 328px;
+  margin: 192px 0 150px;
+  flex: 500px;
 }
 
 
 .offerTitle {
-    margin-bottom: 41px;
+  margin-bottom: 41px;
 }
 
 .offerSubtitle {
-    margin-bottom: 41px;
+  margin-bottom: 41px;
 }
 
 .buttonLink:hover{
-    opacity: 1;
+  opacity: 1;
 }
 
 .offerButton {
-    color: #FFFFFF;
-    width: 254px;
-    height: 64px;
-    background-image: linear-gradient(to bottom right, #FF2323, #851212);
-    border-radius: 19px;
-    box-shadow: 0 9px 35px 10px rgba(163, 22, 22, 0.45);
+  color: #FFFFFF;
+  width: 254px;
+  height: 64px;
+  background-image: linear-gradient(to bottom right, #FF2323, #851212);
+  border-radius: 19px;
+  box-shadow: 0 9px 35px 10px rgba(163, 22, 22, 0.45);
 }
 
 .offerButton:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .mainOffer img {
-    width: 670px;
-    height: auto;
-    object-fit: fill;
-    background-image: url('../img/landing_page_img_bg.png');
-    background-size: contain
+  width: 670px;
+  height: auto;
+  object-fit: fill;
+  background-image: url('../img/landing_page_img_bg.png');
+  background-size: contain
 }
 
 .check_all-button {
-    color: black;
-    width: 110px;
-    height: 44px;
-    background-color: #F6F6F6;
-    border-radius: 6px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  color: black;
+  width: 110px;
+  height: 44px;
+  background-color: #F6F6F6;
+  border-radius: 6px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
 }
 
 .mainBrands {
-    height: 244px;
-    margin-bottom: 126px;
+  height: 244px;
+  margin-bottom: 126px;
 }
 
 .brandsHeader {
-    height: 44px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .brandsTitle {
-    width: 500px;
+  width: 500px;
 }
 
 .brandsCards {
-    height: 170px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 170px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .brand {
-    width: 170px;
-    height: 170px;
-    padding: 15px;
-    border-radius: 16px;
-    background-color: #F6F6F6;
-    transition: transform 0.3s ease;
+  width: 170px;
+  height: 170px;
+  padding: 15px;
+  border-radius: 16px;
+  background-color: #F6F6F6;
+  transition: transform 0.3s ease;
 }
 
 .brand:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .brand img {
-    width: 155px;
-    height: auto;
-    object-fit: contain;
-    vertical-align: middle;
+  width: 155px;
+  height: auto;
+  object-fit: contain;
+  vertical-align: middle;
 }
 
 .mainCategories {
-    height: 800px;
-    margin-bottom: 126px;
+  height: 800px;
+  margin-bottom: 126px;
 }
-  
+
 .categoriesHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .categoriesTitle {
-    font-size: 32px;
-    font-weight: 800;
+  font-size: 32px;
+  font-weight: 800;
 }
 
 .categoriesCards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .category {
-    flex-direction: column;
-    width: 370px;
-    height: 348px;
-    border-radius: 16px;
-    background-color: #F6F6F6;
-    padding: 27px;
-    transition: transform 0.3s ease;
+  flex-direction: column;
+  width: 370px;
+  height: 348px;
+  border-radius: 16px;
+  background-color: #F6F6F6;
+  padding: 27px;
+  transition: transform 0.3s ease;
 }
 
 .category:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .category span {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 28px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 28px;
 }
 
 .category img {
-    width: 316px;
-    height: 298px;
-    object-fit: contain;
+  width: 316px;
+  height: 298px;
+  object-fit: contain;
 }
 
 .mainSales {
-    height: 474px;
-    margin-bottom: 144px;
+  height: 474px;
+  margin-bottom: 144px;
 }
 
 .salesHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .salesCards {
-    height: 400px;
-    display: flex;
-    justify-content: space-between;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sale {
-    width: 545px;
-    padding-top: 28px;
-    background-color: #F6F6F6;
-    border-radius: 16px;
-    text-align: center;
-    transition: transform 0.3s ease;
+  width: 545px;
+  padding-top: 28px;
+  background-color: #F6F6F6;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
 .sale:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .sale span {
-    font-size: 20px;
-    font-weight: 500;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .sale img {
-    width: 545px;
-    height: 320px;
-    object-fit: contain;
-    border-radius: 0 0 16px 16px;
-    margin-top: 28px;
+  width: 545px;
+  height: 320px;
+  object-fit: contain;
+  border-radius: 0 0 16px 16px;
+  margin-top: 28px;
 }

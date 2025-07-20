@@ -5,6 +5,7 @@ import styles from '../styles/about.module.css';
 
 // Components
 import Image from './Image';
+import Breadcrumbs from './Breadcrumbs';
 
 // Images
 import aboutImg from '../img/about_us/About_us.png';
@@ -76,8 +77,14 @@ class MissionAbout extends React.Component {
 
 class About extends React.Component {
   render() {
+    const breadcrumbItems = [
+      {name: 'Главная', path: '/'},
+      {name: 'О сервисе', path: '/about'}
+    ];
+
     return (
       <main className={styles.main}>
+        <Breadcrumbs items={breadcrumbItems} />
         <ArticleAbout />
         <MissionAbout />
       </main>

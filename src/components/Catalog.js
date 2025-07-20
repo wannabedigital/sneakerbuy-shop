@@ -1,10 +1,8 @@
 import React from 'react';
 
-// Styles
-import '../styles/main.css';
-
 // Components
 import Image from './Image';
+import Breadcrumbs from './Breadcrumbs';
 
 class Catalog extends React.Component {
   constructor(props) {
@@ -75,9 +73,14 @@ class Catalog extends React.Component {
 
   render() {
     const { products, selectedSize } = this.state;
+    const breadcrumbItems = [
+      {name: 'Главная', path: '/'},
+      {name: 'Каталог', path: '/catalog'}
+    ];
+
     return (
       <main className="catalog">
-        <h1>Каталог</h1>
+        <Breadcrumbs items={breadcrumbItems} />
         <div className="products">
           {products.map((product) => (
             <div className="product" key={product['product code']}>
