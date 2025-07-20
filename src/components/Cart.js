@@ -1,7 +1,14 @@
 import React from 'react';
-import Image from './Image';
-import cartIcon from '../img/website_img/svg_icons/cart_icon.svg';
+
+// Styles
 import styles from '../styles/cart.module.css';
+
+// Components
+import Image from './Image';
+
+// Images
+import cartIcon from '../img/svg_icons/cart_icon.svg';
+
 
 class CartModal extends React.Component {
   constructor(props) {

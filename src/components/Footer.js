@@ -8,10 +8,10 @@ import Image from './Image';
 import styles from '../styles/footer.module.css';
 
 // Images
-import footerLogoIcon from '../img/website_img/svg_icons/logo_icon_footer.svg';
-import vkIcon from '../img/website_img/svg_icons/vk_icon_footer.svg';
-import telegramIcon from '../img/website_img/svg_icons/telegram_icon_footer.svg';
-import dzenIcon from '../img/website_img/svg_icons/dzen_icon_footer.svg';
+import footerLogoIcon from '../img/svg_icons/logo_icon_footer.svg';
+import vkIcon from '../img/svg_icons/vk_icon_footer.svg';
+import telegramIcon from '../img/svg_icons/telegram_icon_footer.svg';
+import dzenIcon from '../img/svg_icons/dzen_icon_footer.svg';
 
 class FooterLogo extends React.Component {
     render() {

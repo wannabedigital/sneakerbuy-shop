@@ -1,5 +1,10 @@
 import React from 'react';
+
+// Styles
 import '../styles/main.css';
+
+// Components
+import Image from './Image';
 
 class Catalog extends React.Component {
   constructor(props) {
@@ -76,10 +81,9 @@ class Catalog extends React.Component {
         <div className="products">
           {products.map((product) => (
             <div className="product" key={product['product code']}>
-              <img
-                src={product.img}
+              <Image
+                image={product.img}
                 alt={`${product.brand} ${product.model}`}
-                style={{ width: '100px', height: '100px' }}
               />
               <h3>
                 {product.brand} {product.model}

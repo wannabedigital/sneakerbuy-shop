@@ -8,21 +8,21 @@ import Image from './Image';
 import styles from '../styles/home.module.css';
 
 // Images
-import offerImg from '../img/website_img/landing_page_img.png';
-import tnfBrandLogo from '../img/website_img/brand/бренд 1.png';
-import nikeBrandLogo from '../img/website_img/brand/бренд 2.png';
-import adidasBrandLogo from '../img/website_img/brand/бренд 3.png';
-import rickOwensBrandLogo from '../img/website_img/brand/rickowens.webp';
-import reebokBrandLogo from '../img/website_img/brand/бренд 5.png';
-import nbBrandLogo from '../img/website_img/brand/бренд 6.png';
-import trainersCategoryImg from '../img/website_img/category/category 1.png';
-import sneakersCategoryImg from '../img/website_img/category/category 3.png';
-import bootsCategoryImg from '../img/website_img/category/category 2.png';
-import lowShoesCategoryImg from '../img/website_img/category/category 4.png';
-import highBootsCategoryImg from '../img/website_img/category/category 5.png';
-import slippersCategoryImg from '../img/website_img/category/category 6.png';
-import FirstSalesImg from '../img/website_img/sales/sale 1.png';
-import SecondSalesImg from '../img/website_img/sales/sale 2.png';
+import offerImg from '../img/landing_page_img.png';
+import tnfBrandLogo from '../img/brand/бренд 1.png';
+import nikeBrandLogo from '../img/brand/бренд 2.png';
+import adidasBrandLogo from '../img/brand/бренд 3.png';
+import rickOwensBrandLogo from '../img/brand/rickowens.webp';
+import reebokBrandLogo from '../img/brand/бренд 5.png';
+import nbBrandLogo from '../img/brand/бренд 6.png';
+import trainersCategoryImg from '../img/category/category 1.png';
+import sneakersCategoryImg from '../img/category/category 3.png';
+import bootsCategoryImg from '../img/category/category 2.png';
+import lowShoesCategoryImg from '../img/category/category 4.png';
+import highBootsCategoryImg from '../img/category/category 5.png';
+import slippersCategoryImg from '../img/category/category 6.png';
+import FirstSalesImg from '../img/sales/sale 1.png';
+import SecondSalesImg from '../img/sales/sale 2.png';
 
 class HomeOffer extends React.Component {
   offerTitleText = 'Твоя новая пара хайповой обуви с доставкой на дом';

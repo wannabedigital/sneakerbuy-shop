@@ -1,10 +1,5 @@
 .main {
-    width: 1170px;
-    margin: 84px auto;
-    height: 2566px;
-    display: block;
-    font-size: 20px;
-    margin-bottom: 144px;
+    height: auto;
 }
 
 .mainOffer {
@@ -52,7 +47,7 @@
     width: 670px;
     height: auto;
     object-fit: fill;
-    background-image: url('../img/website_img/landing_page_img_bg.png');
+    background-image: url('../img/landing_page_img_bg.png');
     background-size: contain
 }
 

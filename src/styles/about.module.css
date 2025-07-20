@@ -1,0 +1,43 @@
+.main {
+    height: auto;
+}
+
+.mainAbout, .mainMission {
+    height: 610px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F6F6F6;
+    margin-bottom: 70px;
+}
+
+.mainAbout .aboutText {
+    width: 470px;
+    height: 610px;
+    padding: 120px 70px 170px 0;
+}
+
+.mainMission .missionText {
+    width: 470px;
+    height: 610px;
+    padding: 135px 0 190px 70px;
+}
+
+
+.mainAbout .aboutText h2, .mainMission .missionText h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 29px;
+}
+
+.mainAbout .aboutText p, .mainMission .missionText p {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.mainAbout .aboutText p .highlightedBrand {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}

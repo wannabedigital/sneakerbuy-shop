@@ -9,7 +9,7 @@ import HeaderCart from './Cart';
 import styles from '../styles/header.module.css';
 
 // Imports
-import logoIcon from '../img/website_img/svg_icons/logo_icon.svg';
+import logoIcon from '../img/svg_icons/logo_icon.svg';
 
 
 class HeaderLogo extends React.Component {
