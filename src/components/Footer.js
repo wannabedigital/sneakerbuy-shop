@@ -17,7 +17,7 @@ class FooterLogo extends React.Component {
   render() {
     return (
       <div className={styles.footerLogo}>
-        <Image image={footerLogoIcon} />
+        <Image image={footerLogoIcon} alt='footer logo icon' />
       </div>
     )
   }
@@ -107,7 +107,7 @@ class Footer extends React.Component {
   return (
     <footer className={styles.footer}>
       <FooterUpper />
-      <div className={styles.footerBar}></div>
+      <div className={styles.footerBar} />
       <FooterLower />
     </footer>
   );

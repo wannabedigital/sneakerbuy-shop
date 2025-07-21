@@ -15,7 +15,7 @@ class Breadcrumbs extends React.Component {
           <NavLink
           to={item.path}
           className={({ isActive }) =>
-            `${styles.breadcrumb} ${isActive ? styles.active : ''}`
+            `${styles.breadcrumb} ${isActive ? styles.active : 'notActive'}`
           }
           >
           {item.name}

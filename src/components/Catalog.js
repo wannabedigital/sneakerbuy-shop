@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Styles
+import styles from '../styles/contact.module.css';
+
 // Components
 import Image from './Image';
 import Breadcrumbs from './Breadcrumbs';
@@ -79,7 +82,7 @@ class Catalog extends React.Component {
     ];
 
     return (
-      <main className="catalog">
+      <main className={styles.main}>
         <Breadcrumbs items={breadcrumbItems} />
         <div className="products">
           {products.map((product) => (
@@ -93,6 +96,8 @@ class Catalog extends React.Component {
               </h3>
               <p>{product.price} ₽</p>
               <select
+                className='sizeSelect'
+                title='size'
                 value={selectedSize[product['product code']] || ''}
                 onChange={(e) =>
                   this.handleSizeChange(product['product code'], e.target.value)
