@@ -12,21 +12,21 @@ class FeedbackRequestSection extends React.Component {
       <section className={styles.feedbackRequest}>
         <h2 className={styles.feedbackSectionTitle}>Обращение</h2>
         <div id='feedbackTypeSelect' className={styles.inputField}>
-          <p><label for='feedbackType'>Выберите тип обращения</label></p>
-          <select id='feedbackType' name='type' required>
-            <option value='' defaultValue>Тип обращения</option>
+          <p><label htmlFor='feedbackType'>Выберите тип обращения</label></p>
+          <select id='feedbackType' name='type' placeholder='Тип обращения' required>
+            <option value='' disabled selected>Тип обращения</option>
             <option value='gratitude'>Благодарность</option>
             <option value='complaint'>Жалоба</option>
             <option value='suggestion'>Совет</option>
           </select>
         </div>
         <div id='orderNumberInput' className={styles.inputField}>
-          <p><label for='orderNumber'>Введите номер заказа</label></p>
-          <input type='text' id='orderNumber' required />
+          <p><label htmlFor='orderNumber'>Введите номер заказа</label></p>
+          <input type='text' id='orderNumber' placeholder='Номер заказа' required />
         </div>
         <div id='messageInput' className={styles.inputField}>
-          <p><label for='message'>Ваше обращение</label></p>
-          <textarea className={styles.messageTextarea} required />
+          <p><label htmlFor='message'>Ваше обращение</label></p>
+          <textarea className={styles.messageTextarea} placeholder='Обращение' required />
         </div>
       </section>
     )
@@ -39,27 +39,27 @@ class FeedbackPersonalSection extends React.Component {
       <section className={styles.feedbackPersonal}>
         <h2 className={styles.feedbackSectionTitle}>Данные о себе</h2>
         <div id='nameInput' className={styles.inputField}>
-          <p><label for='fullName'>Фамилия Имя</label></p>
-          <input type='text' id='fullName' required />
+          <p><label htmlFor='fullName'>Фамилия Имя</label></p>
+          <input type='text' id='fullName' placeholder='Фамилия Имя' required />
         </div>
         <div id='orderNumberInput' className={styles.inputField}>
-          <p><label for='phoneNum'>Номер телефона</label></p>
-          <input type='tel' id='phoneNum' required />
+          <p><label htmlFor='phoneNum'>Номер телефона</label></p>
+          <input type='tel' id='phoneNum' placeholder='Телефон' required />
         </div>
         <div id='messageInput' className={styles.inputField}>
-          <p><label for='email'>E-mail</label></p>
-          <input type='email' id='email' required />
+          <p><label htmlFor='email'>E-mail</label></p>
+          <input type='email' id='email' placeholder='E-mail' required />
         </div>
         <div id='agreement' className={styles.inputField}>
           <div>
             <input type='checkbox' id='feedbackRequestCheckbox' className={styles.checkboxInput} />
             <span class={styles.customCheckbox} />
-            <label for='feedbackRequestCheckbox' className={styles.checkmarkContact}>Мне потребуется обратная связь по обращению</label>
+            <label htmlFor='feedbackRequestCheckbox' className={styles.checkmarkContact}>Мне потребуется обратная связь по обращению</label>
           </div>
           <div>
             <input type='checkbox' id='feedbackDataProcessingCheckbox' className={styles.checkboxInput} required />
             <span class={styles.customCheckbox} />
-            <label for='feedbackDataProcessingCheckbox' className={styles.checkmarkContact}>Я принимаю cогласие на обработку персональных данных, пользовательское соглашение, политику конфиденциальности и условия Клубной программы</label>
+            <label htmlFor='feedbackDataProcessingCheckbox' className={styles.checkmarkContact}>Я принимаю cогласие на обработку персональных данных, пользовательское соглашение, политику конфиденциальности и условия Клубной программы</label>
           </div>
         </div>
       </section>

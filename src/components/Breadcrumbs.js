@@ -20,7 +20,7 @@ class Breadcrumbs extends React.Component {
           >
           {item.name}
           </NavLink>
-          {index < items.length - 1 && <span className={styles.separator}> &mdash; </span>}
+          {index < items.length - 1 && <span className={styles.separator}> &#47; </span>}
         </React.Fragment>
         ))}
       </nav>  
