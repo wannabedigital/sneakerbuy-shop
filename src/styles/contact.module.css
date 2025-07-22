@@ -1,157 +1,51 @@
-.inProcess {
-	margin: 50px 0;
-	text-align: center;
-}
-
 .main {
-	height: auto;
+  height: auto;
 }
 
-.feedbackHeader {
-	background-color:  #F6F6F640;
-	border-radius: 16px 16px 0 0;
-	padding: 20px 30px;
+.contactInfoMainTitle, .detailsTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.feedbackMain {
-	height: auto;
-	background-color: #F6F6F6;
-	border-radius: 0 0 16px 16px;
-	padding: 27px 31px;
-	margin: auto;
-	margin-bottom: 92px;
+.contactInfoContainer {
+  display: flex;
+  justify-content: start;
+  gap: 150px
 }
 
-.flexSection {
-	display: flex;
-	justify-content: space-between;
-	gap: 60px;
+.contactInfoTitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 
-.feedbackFormTitle {
-	font-size: 36px;
-	font-weight: 600;
-	margin-bottom: 2px;
+.contactInfoText {
+  font-size: 15px;
+  font-weight: normal;
+  margin-bottom: 10px;
 }
 
-.feedbackFormSubtitle {
-	font-size: 16px;
-	font-weight: normal;
+.mainContactInfo div a {
+  display: list-item;
+  list-style-type: none;
 }
 
-.feedbackRequest,
-.feedbackPersonal {
-	width: 50%;
+.social {
+  margin-bottom: 5px;
 }
 
-.feedbackSectionTitle {
-	margin-bottom: 27px;
+.social img {
+  width: 27px;
+  height: auto;
 }
 
-.inputField {
-	font-size: 12px;
-	height: 53px;
-	display: block;
-	margin-top: 17px;
+.socialName {
+  font-size: 15px;
+  font-weight: normal;
 }
 
-.inputField label {
-	font-size: 14px;
-}
-
-.inputField input,
-.inputField select,
-.inputField textarea{
-	padding: 5px;
-	font-size: 14px;
-	margin-top: 7px;
-	width: 100%;
-	height: 29px;
-	border-radius: 1px;
-	outline: 1px solid #000000;
-}
-
-.inputField input:focus,
-.inputField select:focus,
-.inputField textarea:focus {
-	outline: none;
-	border-color: #851212;
-	box-shadow: 0 0 5px rgba(133, 18, 18, 0.3);
-}
-
-.messageTextarea {
-	height: 198px;
-	overflow: hidden;
-	resize: none;
-}
-
-.inputField .checkboxInput {
-	position: absolute;
-  opacity: 0;
-  width: 17px;
-  height: 17px;
-  margin: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.customCheckbox {
-  display: inline-block;
-  width: 17px;
-  height: 17px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  background-color: white;
-  vertical-align: middle;
-  position: relative;
-  cursor: pointer;
-  margin-right: 8px;
-  z-index: 1;
-}
-
-.customCheckbox::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 1px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-
-}
-
-.checkboxInput:checked + .customCheckbox {
-  background-color: #851212;
-  border: 1px solid #851212;
-  box-shadow: 0 0 5px rgba(133, 18, 18, 0.4);
-}
-
-.checkboxInput:checked + .customCheckbox::after {
-  opacity: 1;
-}
-
-.checkmarkContact {
-	font-size: 12px;
-}
-
-.sendButton {
-	margin: 50px auto auto;
-	width: 70%;
-	height: 44px;
-	background-color: #851212;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #FFFFFF;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: opacity 0.3s;
-}
-
-.sendButton button:hover {
-	opacity: 0.9;
+.detailsText {
+  font-size: 15px;
+  font-weight: normal;
 }

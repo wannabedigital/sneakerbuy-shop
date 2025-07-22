@@ -6,6 +6,7 @@ import styles from '../styles/contact.module.css';
 // Components
 import Image from './Image';
 import Breadcrumbs from './Breadcrumbs';
+import UnderDevelope from './UnderDevelope';
 
 class Catalog extends React.Component {
   constructor(props) {
@@ -84,6 +85,7 @@ class Catalog extends React.Component {
     return (
       <main className={styles.main}>
         <Breadcrumbs items={breadcrumbItems} />
+        <UnderDevelope />
         <div className="products">
           {products.map((product) => (
             <div className="product" key={product['product code']}>

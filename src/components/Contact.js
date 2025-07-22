@@ -5,95 +5,65 @@ import styles from '../styles/contact.module.css';
 
 // Components
 import Breadcrumbs from './Breadcrumbs';
+import FeedbackForm from './Feedback';
+import Image from './Image';
 
-class FeedbackRequestSection extends React.Component {
+// Images
+import vkIcon from '../img/svg_icons/vk_icon.svg';
+import telegramIcon from '../img/svg_icons/telegram_icon.svg';
+import dzenIcon from '../img/svg_icons/dzen_icon.svg';
+
+
+class ContactInfo extends React.Component {
   render() {
     return (
-      <section className={styles.feedbackRequest}>
-        <h2 className={styles.feedbackSectionTitle}>Обращение</h2>
-        <div id='feedbackTypeSelect' className={styles.inputField}>
-          <p><label htmlFor='feedbackType'>Выберите тип обращения</label></p>
-          <select id='feedbackType' name='type' placeholder='Тип обращения' required>
-            <option value='' disabled selected>Тип обращения</option>
-            <option value='gratitude'>Благодарность</option>
-            <option value='complaint'>Жалоба</option>
-            <option value='suggestion'>Совет</option>
-          </select>
-        </div>
-        <div id='orderNumberInput' className={styles.inputField}>
-          <p><label htmlFor='orderNumber'>Введите номер заказа</label></p>
-          <input type='text' id='orderNumber' placeholder='Номер заказа' required />
-        </div>
-        <div id='messageInput' className={styles.inputField}>
-          <p><label htmlFor='message'>Ваше обращение</label></p>
-          <textarea className={styles.messageTextarea} placeholder='Обращение' required />
-        </div>
-      </section>
+      <div className={styles.mainContactInfo}>
+				<h2 className={styles.contactInfoMainTitle}>Контакты</h2>
+				<div className={styles.contactInfoContainer}>
+					<div className={styles.contactInfoPhone}>
+						<h3 className={styles.contactInfoTitle}>Телефон</h3>
+						<a href='tel:+79698117545'><p className={styles.contactInfoText}>+7 (969) 811-75-45</p></a>
+						<a href='tel:+79815210512'><p className={styles.contactInfoText}>+7 (981) 521-05-12</p></a>
+					</div>
+					<div className={styles.contactInfoEmail}>
+						<h3 className={styles.contactInfoTitle}>E-mail</h3>
+						<a href='mailto:sneakerbuysup@gmail.com'><p className={styles.contactInfoText}>sneakerbuysup@gmail.com</p></a>
+						<a href='mailto:sneakerbuysupport@gmail.com'><p className={styles.contactInfoText}>sneakerbuysupport@gmail.com</p></a>
+					</div>
+					<div className={styles.contactInfoSocial}>
+						<h3 className={styles.contactInfoTitle}>Социальные сети</h3>
+						<div className={styles.social}>
+							<a href='/'>
+								<Image image={vkIcon} alt='vk icon' />
+								<span className={styles.socialName}>Вконтакте</span>
+							</a>
+						</div>
+						<div className={styles.social}>
+							<a href='/'>
+								<Image image={telegramIcon} alt='telegram icon' />
+								<span className={styles.socialName}>Telegram</span>
+							</a>
+						</div>
+						<div className={styles.social}>
+							<a href='/'>
+								<Image image={dzenIcon} alt='dzen icon' />
+								<span className={styles.socialName}>Дзен</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
     )
   }
 }
 
-class FeedbackPersonalSection extends React.Component {
+class ContactDetails extends React.Component {
   render() {
     return (
-      <section className={styles.feedbackPersonal}>
-        <h2 className={styles.feedbackSectionTitle}>Данные о себе</h2>
-        <div id='nameInput' className={styles.inputField}>
-          <p><label htmlFor='fullName'>Фамилия Имя</label></p>
-          <input type='text' id='fullName' placeholder='Фамилия Имя' required />
-        </div>
-        <div id='orderNumberInput' className={styles.inputField}>
-          <p><label htmlFor='phoneNum'>Номер телефона</label></p>
-          <input type='tel' id='phoneNum' placeholder='Телефон' required />
-        </div>
-        <div id='messageInput' className={styles.inputField}>
-          <p><label htmlFor='email'>E-mail</label></p>
-          <input type='email' id='email' placeholder='E-mail' required />
-        </div>
-        <div id='agreement' className={styles.inputField}>
-          <div>
-            <input type='checkbox' id='feedbackRequestCheckbox' className={styles.checkboxInput} />
-            <span class={styles.customCheckbox} />
-            <label htmlFor='feedbackRequestCheckbox' className={styles.checkmarkContact}>Мне потребуется обратная связь по обращению</label>
-          </div>
-          <div>
-            <input type='checkbox' id='feedbackDataProcessingCheckbox' className={styles.checkboxInput} required />
-            <span class={styles.customCheckbox} />
-            <label htmlFor='feedbackDataProcessingCheckbox' className={styles.checkmarkContact}>Я принимаю cогласие на обработку персональных данных, пользовательское соглашение, политику конфиденциальности и условия Клубной программы</label>
-          </div>
-        </div>
-      </section>
-    )
-  }
-}
-
-class FeedbackSendButton extends React.Component {
-  render() {
-    return (
-      <button id='send-request' className={styles.sendButton}>Отправить</button>
-    )
-  }
-}
-
-class FeedbackForm extends React.Component {
-  formTitle = 'Обратная связь';
-  formSubtitle = 'Напишите нам, если у вас возникли вопросы по сайту или вы хотите выразить благодарность.';
-
-  render() {
-    return (
-      <form className={styles.feedbackForm}>
-        <header className={styles.feedbackHeader}>
-          <h1 className={styles.feedbackFormTitle}>{this.formTitle}</h1>
-          <h3 className={styles.feedbackFormSubtitle}>{this.formSubtitle}</h3>
-        </header>
-        <main className={styles.feedbackMain}>
-          <section className={styles.flexSection}>
-            <FeedbackRequestSection />
-            <FeedbackPersonalSection />
-          </section>
-          <FeedbackSendButton />
-        </main>
-      </form>
+      <div className={styles.mainDetails}>
+				<h2 className={styles.detailsTitle}>Реквизиты</h2>
+				<p className={styles.detailsText}>ООО "СНИКЕРМОД"<br/>ИНН 7709800524 / ОГРН 1122467245639<br />Юридический адрес: 109028 г. Москва, Серёбриническая наб., дом 27, эт. 2, пом. 1, ком. № 65, 66, 69, 59, 54, 51, 61<br />Тел.: +7 (499) 429-18-82</p>
+			</div>
     )
   }
 }
@@ -108,11 +78,9 @@ class Contact extends React.Component {
     return (
       <main className={styles.main}>
         <Breadcrumbs items={breadcrumbItems} />
-        <div className={styles.inProcess}>
-          <h1>Страница Контакты</h1>
-          <p>В разработке...</p>
-        </div>
         <FeedbackForm />
+        <ContactInfo />
+        <ContactDetails />
       </main>
     )
   }
