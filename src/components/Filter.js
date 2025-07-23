@@ -16,34 +16,30 @@ class PriceFilter extends React.Component {
       prevProps.maxPrice !== this.props.maxPrice
     ) {
       this.setState({
-        minPrice: this.props.filters?.minPrice ?? 0,
-        maxPrice: this.props.filters?.maxPrice ?? this.props.maxPrice ?? 100000,
+        minPrice: Math.max(0, this.props.filters?.minPrice ?? 0),
+        maxPrice: Math.min(this.props.maxPrice, Math.max(this.state.minPrice + 1, this.props.filters?.maxPrice ?? this.props.maxPrice ?? 100000)),
       });
     }
   }
 
   handlePriceChange = (e) => {
     const { name, value } = e.target;
-    const priceGap = 1;
+    const parsedValue = parseInt(value) || 0;
+    const priceGap = 500;
 
     this.setState(
-      (prevState) => {
-        let minPrice = prevState.minPrice;
-        let maxPrice = prevState.maxPrice;
+      ({ minPrice, maxPrice }) => {
+        let newMinPrice = minPrice;
+        let newMaxPrice = maxPrice;
 
         if (name === 'minPrice') {
-          minPrice = Math.max(0, parseInt(value) || 0);
-          if (minPrice > maxPrice - priceGap) {
-            minPrice = maxPrice - priceGap;
-          }
+          newMinPrice = Math.max(0, parsedValue);
+          newMaxPrice = Math.max(newMaxPrice, newMinPrice + priceGap);
         } else {
-          maxPrice = Math.min(this.props.maxPrice, parseInt(value) || maxPrice);
-          if (maxPrice < minPrice + priceGap) {
-            maxPrice = minPrice + priceGap;
-          }
+          newMaxPrice = Math.max(minPrice + priceGap, Math.min(this.props.maxPrice, parsedValue));
         }
 
-        return { minPrice, maxPrice };
+        return { minPrice: newMinPrice, maxPrice: newMaxPrice };
       },
       () => {
         this.props.onFilterChange?.(this.state);
@@ -53,26 +49,22 @@ class PriceFilter extends React.Component {
 
   handleRangeChange = (e) => {
     const { name, value } = e.target;
-    const priceGap = 1;
+    const parsedValue = parseInt(value) || 0;
+    const priceGap = 500;
 
     this.setState(
-      (prevState) => {
-        let minPrice = prevState.minPrice;
-        let maxPrice = prevState.maxPrice;
+      ({ minPrice, maxPrice }) => {
+        let newMinPrice = minPrice;
+        let newMaxPrice = maxPrice;
 
         if (name === 'minPrice') {
-          minPrice = parseInt(value);
-          if (minPrice > maxPrice - priceGap) {
-            minPrice = maxPrice - priceGap;
-          }
+          newMinPrice = Math.max(0, parsedValue);
+          newMaxPrice = Math.max(newMaxPrice, newMinPrice + priceGap);
         } else {
-          maxPrice = parseInt(value);
-          if (maxPrice < minPrice + priceGap) {
-            maxPrice = minPrice + priceGap;
-          }
+          newMaxPrice = Math.max(minPrice + priceGap, Math.min(this.props.maxPrice, parsedValue));
         }
 
-        return { minPrice, maxPrice };
+        return { minPrice: newMinPrice, maxPrice: newMaxPrice };
       },
       () => {
         this.props.onFilterChange?.(this.state);
@@ -96,25 +88,25 @@ class PriceFilter extends React.Component {
             <div className={styles.priceInputFields}>
               <div className={styles.priceInputField}>
                 <input
-                  type="number"
-                  id="minNumInput"
-                  name="minPrice"
+                  type='number'
+                  id='minNumInput'
+                  name='minPrice'
                   className={styles.minInput}
                   value={minPrice}
                   onChange={this.handlePriceChange}
-                  min="0"
-                  max={maxPriceLimit}
+                  min='0'
+                  max={maxPriceLimit - 1}
                 />
               </div>
               <div className={styles.priceInputField}>
                 <input
-                  type="number"
-                  id="maxNumInput"
-                  name="maxPrice"
+                  type='number'
+                  id='maxNumInput'
+                  name='maxPrice'
                   className={styles.maxInput}
                   value={maxPrice}
                   onChange={this.handlePriceChange}
-                  min="0"
+                  min={minPrice + 1}
                   max={maxPriceLimit}
                 />
               </div>
@@ -132,26 +124,26 @@ class PriceFilter extends React.Component {
         </div>
         <div className={styles.rangeInput}>
           <input
-            type="range"
-            id="minRangeInput"
-            name="minPrice"
+            type='range'
+            id='minRangeInput'
+            name='minPrice'
             className={styles.minRange}
-            min="0"
-            max={maxPriceLimit}
+            min='0'
+            max={maxPriceLimit - 1}
             value={minPrice}
             onChange={this.handleRangeChange}
-            step="1"
+            step='1'
           />
           <input
-            type="range"
-            id="maxRangeInput"
-            name="maxPrice"
+            type='range'
+            id='maxRangeInput'
+            name='maxPrice'
             className={styles.maxRange}
-            min="0"
+            min='0'
             max={maxPriceLimit}
             value={maxPrice}
             onChange={this.handleRangeChange}
-            step="1"
+            step='1'
           />
         </div>
       </div>
@@ -169,7 +161,7 @@ class GenderFilter extends React.Component {
 
 class Filter extends React.Component {
     render() {
-      const { filters, onFilterChange, maxPrice, onReset } = this.props;
+      const { filters = { minPrice: 0, maxPrice: 100000 }, onFilterChange = () => {}, maxPrice = 100000, onReset = () => {} } = this.props;
 
       return (
         <section className={styles.mainFilter}>

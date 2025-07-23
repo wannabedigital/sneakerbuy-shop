@@ -24,14 +24,14 @@ class Products extends React.Component {
     const { products, selectedSize, onSizeChange } = this.props;
 
     return (
-      <div className="products">
+      <div className='products'>
         {products.length === 0 ? (
           <p style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
             Ничего не найдено
           </p>
         ) : (
           products.map((product) => (
-            <div className="product" key={product['product code']}>
+            <div className='product' key={product['product code']}>
               <Image
                 image={product.img}
                 alt={`${product.brand} ${product.model}`}
@@ -41,14 +41,14 @@ class Products extends React.Component {
               </h3>
               <p>{product.price} ₽</p>
               <select
-                className="sizeSelect"
-                title="size"
+                className='sizeSelect'
+                title='size'
                 value={selectedSize[product['product code']] || ''}
                 onChange={(e) =>
                   onSizeChange(product['product code'], e.target.value)
                 }
               >
-                <option value="">Выберите размер</option>
+                <option value=''>Выберите размер</option>
                 {product.sizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
@@ -75,17 +75,19 @@ class Catalog extends React.Component {
       minPrice: 0,
       maxPrice: 100000,
     },
+    maxPriceLimit: 100000, // Статичное значение
   };
 
   componentDidMount() {
     fetch('/json/products.json')
       .then((response) => response.json())
       .then((data) => {
-        const maxPrice = Math.max(...data.map((p) => p.price));
+        const maxPriceLimit = Math.max(...data.map((p) => p.price));
         this.setState({
           allProducts: data,
           filteredProducts: data,
-          filters: { minPrice: 0, maxPrice },
+          filters: { minPrice: 0, maxPrice: maxPriceLimit },
+          maxPriceLimit,
         });
       })
       .catch((error) => console.error('Ошибка загрузки товаров:', error));
@@ -131,9 +133,8 @@ class Catalog extends React.Component {
   };
 
   resetFilters = () => {
-    const maxPrice = Math.max(...this.state.allProducts.map((p) => p.price));
     this.setState({
-      filters: { minPrice: 0, maxPrice },
+      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit },
       filteredProducts: this.state.allProducts,
     });
   };
@@ -149,11 +150,11 @@ class Catalog extends React.Component {
       <main className={styles.main}>
         <Breadcrumbs items={breadcrumbItems} />
         <UnderDevelope />
-        <div className="container-filter-flypages">
+        <div className={styles.containerFilterFlypages}>
           <Filter
             filters={filters}
             onFilterChange={this.handleFilterChange}
-            maxPrice={filters.maxPrice}
+            maxPrice={this.state.maxPriceLimit} // Используем статичное maxPriceLimit
             onReset={this.resetFilters}
           />
           <Products
