@@ -1,0 +1,157 @@
+.mainFilter {
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.filterTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.filterSubtitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: -30px;
+}
+
+.priceFilter {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.priceInputContainer {
+  width: 100%;
+}
+
+.priceInput {
+  width: 100%;
+  display: block;
+  font-size: 19px;
+  color: #555;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.priceInput div {
+  display: flex;
+  align-items: center;
+}
+
+.priceFromTo {
+  justify-content: flex-start;
+  gap: 80px;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.priceInputFields {
+  justify-content: space-between;
+}
+
+.priceInputField {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.minInput,
+.maxInput {
+  flex: 1;
+  width: 80px;
+  height: 35px;
+  padding: 5px;
+  font-size: 15px;
+  color: #FFFFFF;
+  border-radius: 9px;
+  text-align: center;
+  border: 0;
+  background: #6D6D6D;
+}
+
+.minInput::-webkit-outer-spin-button,
+.minInput::-webkit-inner-spin-button,
+.maxInput::-webkit-outer-spin-button,
+.maxInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sliderContainer {
+  width: 100%;
+  height: 6px;
+  position: relative;
+  background: #f6f6f6;
+  border-radius: 5px;
+}
+
+.priceSlider {
+  height: 100%;
+  position: absolute;
+  border-radius: 5px;
+  background: #888;
+}
+
+.rangeInput {
+  position: relative;
+}
+
+.minRange,
+.maxRange {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: none;
+  top: -5px;
+  pointer-events: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.minRange::-webkit-slider-thumb,
+.maxRange::-webkit-slider-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 70%;
+  background: #6D6D6D;
+  pointer-events: auto;
+  -webkit-appearance: none;
+}
+
+.minRange::-webkit-slider-thumb:hover,
+.maxRange::-webkit-slider-thumb:hover {
+  background: #555;
+}
+
+.minRange::-moz-range-thumb,
+.maxRange::-moz-range-thumb {
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  background: #ffffff;
+  pointer-events: auto;
+  border: none;
+}
+
+.resetButton {
+  margin: 20px auto;
+  width: 100%;
+  height: 44px;
+  background-color: #851212;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  display: block;
+}
+
+.resetButton:hover {
+  opacity: 0.9;
+}

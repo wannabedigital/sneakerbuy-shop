@@ -1,0 +1,82 @@
+[
+  {
+    "product code": "001",
+    "brand": "Nike",
+    "model": "Air Max 90",
+    "price": 12000,
+    "img": "/img/product1.jpg",
+    "sizes": ["38", "39", "40", "41"]
+  },
+  {
+    "product code": "002",
+    "brand": "Adidas",
+    "model": "Yeezy Boost 350",
+    "price": 15000,
+    "img": "/img/product2.jpg",
+    "sizes": ["39", "40", "41", "42"]
+  },
+  {
+    "product code": "003",
+    "brand": "Puma",
+    "model": "RS-X",
+    "price": 10000,
+    "img": "/img/product3.jpg",
+    "sizes": ["37", "38", "39", "40"]
+  },
+  {
+    "product code": "004",
+    "brand": "Reebok",
+    "model": "Classic Leather",
+    "price": 9000,
+    "img": "/img/product4.jpg",
+    "sizes": ["38", "39", "40", "41"]
+  },
+  {
+    "product code": "005",
+    "brand": "New Balance",
+    "model": "574",
+    "price": 11000,
+    "img": "/img/product5.jpg",
+    "sizes": ["39", "40", "41", "42"]
+  },
+  {
+    "product code": "006",
+    "brand": "Asics",
+    "model": "Gel-Kayano",
+    "price": 13000,
+    "img": "/img/product6.jpg",
+    "sizes": ["38", "39", "40", "41"]
+  },
+  {
+    "product code": "007",
+    "brand": "Vans",
+    "model": "Old Skool",
+    "price": 8000,
+    "img": "/img/product7.jpg",
+    "sizes": ["37", "38", "39", "40"]
+  },
+  {
+    "product code": "008",
+    "brand": "Converse",
+    "model": "Chuck Taylor",
+    "price": 7000,
+    "img": "/img/product8.jpg",
+    "sizes": ["36", "37", "38", "39"]
+  },
+  {
+    "product code": "009",
+    "brand": "Under Armour",
+    "model": "HOVR Phantom",
+    "price": 14000,
+    "img": "/img/product9.jpg",
+    "sizes": ["39", "40", "41", "42"]
+  },
+  {
+    "product code": "010",
+    "brand": "Saucony",
+    "model": "Jazz Original",
+    "price": 9500,
+    "img": "/img/product10.jpg",
+    "sizes": ["38", "39", "40", "41"]
+  }
+]

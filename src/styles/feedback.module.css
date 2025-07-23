@@ -70,8 +70,8 @@
 	box-shadow: 0 0 5px rgba(133, 18, 18, 0.3);
 }
 
-.messageTextarea {
-	height: 198px;
+.inputField .messageTextarea {
+	height: 100px;
 	overflow: hidden;
 	resize: none;
 }
