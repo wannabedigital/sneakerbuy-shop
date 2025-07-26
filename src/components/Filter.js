@@ -152,22 +152,91 @@ class PriceFilter extends React.Component {
 }
 
 class GenderFilter extends React.Component {
-    render() {
-        return (
-            null
-        )
+  state = {
+    genders: this.props.filters?.genders ?? [], // Массив выбранных полов
+  };
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.filters?.genders !== this.props.filters?.genders) {
+      this.setState({
+        genders: this.props.filters?.genders ?? [],
+      });
     }
+  }
+
+  handleGenderChange = (e) => {
+    const { value, checked } = e.target;
+    this.setState(
+      (prevState) => {
+        let newGenders = [...prevState.genders];
+        if (checked) {
+          newGenders = [...newGenders, value]; // Добавляем пол
+        } else {
+          newGenders = newGenders.filter((gender) => gender !== value); // Удаляем пол
+        }
+        return { genders: newGenders };
+      },
+      () => {
+        this.props.onFilterChange?.(this.state);
+      }
+    );
+  };
+  
+  render() {
+    const { genders } = this.state;
+
+    return (
+      <div className={styles.genderFilter}>
+        <h3 className={styles.filterSubtitle}>Пол</h3>
+        <div className={styles.checkboxGroup} >
+          <label className={styles.checkboxLabel}>
+            <input
+              type='checkbox'
+              name='gender'
+              value='man'
+              checked={genders.includes('man')}
+              onChange={this.handleGenderChange}
+            />
+            <span className={styles.checkmark} />
+            Мужской
+          </label>
+          <label className={styles.checkboxLabel}>
+            <input
+              type='checkbox'
+              name='gender'
+              value='woman'
+              checked={genders.includes('woman')}
+              onChange={this.handleGenderChange}
+            />
+            <span className={styles.checkmark} />
+            Женский
+          </label>
+          <label className={styles.checkboxLabel}>
+            <input
+              type='checkbox'
+              name='gender'
+              value='unisex'
+              checked={genders.includes('unisex')}
+              onChange={this.handleGenderChange}
+            />
+            <span className={styles.checkmark} />
+            Унисекс
+          </label>
+        </div>
+      </div>
+    )
+  }
 }
 
 class Filter extends React.Component {
     render() {
-      const { filters = { minPrice: 0, maxPrice: 100000 }, onFilterChange = () => {}, maxPrice = 100000, onReset = () => {} } = this.props;
+      const { filters = { minPrice: 0, maxPrice: 100000, genders: [] }, onFilterChange = () => {}, maxPrice = 100000, onReset = () => {} } = this.props;
 
       return (
         <section className={styles.mainFilter}>
           <h1 className={styles.filterTitle}>Фильтр</h1>
           <PriceFilter filters={filters} onFilterChange={onFilterChange} maxPrice={maxPrice} />
-          <GenderFilter />
+          <GenderFilter filters={filters} onFilterChange={onFilterChange} />
           <button className={styles.resetButton} onClick={onReset}>
             Сбросить фильтры
           </button>

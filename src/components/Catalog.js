@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styles
-import styles from '../styles/contact.module.css';
+import styles from '../styles/catalog.module.css';
 
 // Components
 import Image from './Image';
@@ -24,40 +24,42 @@ class Products extends React.Component {
     const { products, selectedSize, onSizeChange } = this.props;
 
     return (
-      <div className='products'>
+      <div className={styles.products}>
         {products.length === 0 ? (
-          <p style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
-            Ничего не найдено
-          </p>
+          <div className={styles.nothingFound}>
+            <p>Ничего не найдено</p>
+          </div>
         ) : (
           products.map((product) => (
-            <div className='product' key={product['product code']}>
+            <div className={styles.product} key={product['product code']}>
               <Image
                 image={product.img}
                 alt={`${product.brand} ${product.model}`}
               />
-              <h3>
-                {product.brand} {product.model}
-              </h3>
-              <p>{product.price} ₽</p>
-              <select
-                className='sizeSelect'
-                title='size'
-                value={selectedSize[product['product code']] || ''}
-                onChange={(e) =>
-                  onSizeChange(product['product code'], e.target.value)
-                }
-              >
-                <option value=''>Выберите размер</option>
-                {product.sizes.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </select>
-              <button onClick={() => this.handleAddToCart(product)}>
-                Добавить в корзину
-              </button>
+              <div className={styles.productDescription}>
+                <h3>{product.brand}</h3>
+                <h4>{product.model}</h4>
+                <p>{product.price} ₽</p>
+                <select
+                  className='sizeSelect'
+                  title='size'
+                  value={selectedSize[product['product code']] || ''}
+                  onChange={(e) =>
+                    onSizeChange(product['product code'], e.target.value)
+                  }
+                  defaultValue=''
+                >
+                  <option value='' disabled>Выберите размер</option>
+                  {product.sizes.map((size) => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </select>
+                <button onClick={() => this.handleAddToCart(product)}>
+                  Добавить в корзину
+                </button>
+              </div>
             </div>
           ))
         )}
@@ -74,8 +76,9 @@ class Catalog extends React.Component {
     filters: {
       minPrice: 0,
       maxPrice: 100000,
+      genders: []
     },
-    maxPriceLimit: 100000, // Статичное значение
+    maxPriceLimit: 100000,
   };
 
   componentDidMount() {
@@ -86,7 +89,7 @@ class Catalog extends React.Component {
         this.setState({
           allProducts: data,
           filteredProducts: data,
-          filters: { minPrice: 0, maxPrice: maxPriceLimit },
+          filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [] },
           maxPriceLimit,
         });
       })
@@ -98,7 +101,9 @@ class Catalog extends React.Component {
       const filters = { ...prevState.filters, ...newFilters };
       const filteredProducts = prevState.allProducts.filter(
         (product) =>
-          product.price >= filters.minPrice && product.price <= filters.maxPrice
+          product.price >= filters.minPrice &&
+          product.price <= filters.maxPrice &&
+          (filters.genders.length === 0 || filters.genders.includes(product.gender))
       );
       return { filters, filteredProducts };
     });
@@ -134,7 +139,7 @@ class Catalog extends React.Component {
 
   resetFilters = () => {
     this.setState({
-      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit },
+      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit, genders: [] },
       filteredProducts: this.state.allProducts,
     });
   };
@@ -154,7 +159,7 @@ class Catalog extends React.Component {
           <Filter
             filters={filters}
             onFilterChange={this.handleFilterChange}
-            maxPrice={this.state.maxPriceLimit} // Используем статичное maxPriceLimit
+            maxPrice={this.state.maxPriceLimit}
             onReset={this.resetFilters}
           />
           <Products
