@@ -54,7 +54,6 @@ class Products extends React.Component {
                   onChange={(e) =>
                     onSizeChange(product['product code'], e.target.value)
                   }
-                  defaultValue=''
                 >
                   <option value='' disabled>Выберите размер</option>
                   {product.sizes.map((size) => (
@@ -84,7 +83,9 @@ class Catalog extends React.Component {
       minPrice: 0,
       maxPrice: 100000,
       genders: [],
-      categories: []
+      categories: [],
+      brands: [],
+      sizes: []
     },
     maxPriceLimit: 100000,
   };
@@ -93,14 +94,23 @@ class Catalog extends React.Component {
     fetch('/json/products.json')
       .then((response) => response.json())
       .then((data) => {
-        const maxPriceLimit = Math.max(...data.map((p) => p.price));
-        const uniqueCategories = [...new Set(data.map(product => product.category))];
+        const maxPriceLimit = Math.max(...data.map((product) => product.price));
+        const uniqueCategories = [...new Set(data.map(product => product.category))].sort();
+        const uniqueBrands = [...new Set(data.map(product => product.brand))].sort();
+        const uniqueSizes = [...new Set(data.flatMap(product => product.sizes))].sort((a, b) => {
+          const numA = Number(a);
+          const numB = Number(b);
+          return numA - numB;
+        });
+
         this.setState({
           allProducts: data,
           filteredProducts: data,
-          filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [], categories: [] },
+          filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [], categories: [], sizes: [] },
           maxPriceLimit,
-          uniqueCategories
+          uniqueCategories,
+          uniqueBrands,
+          uniqueSizes
         });
       })
       .catch((error) => console.error('Ошибка загрузки товаров:', error));
@@ -114,7 +124,9 @@ class Catalog extends React.Component {
           product.price >= filters.minPrice &&
           product.price <= filters.maxPrice &&
           (filters.genders.length === 0 || filters.genders.includes(product.gender)) &&
-          (filters.categories.length === 0 || filters.categories.includes(product.category))
+          (filters.categories.length === 0 || filters.categories.includes(product.category)) &&
+          (filters.brands.length === 0 ||filters.brands.includes(product.brand)) &&
+          (filters.sizes.length === 0 || filters.sizes.some(size => product.sizes.includes(size)))
       );
       return { filters, filteredProducts };
     });
@@ -150,7 +162,7 @@ class Catalog extends React.Component {
 
   resetFilters = () => {
     this.setState({
-      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit, genders: [], categories: [] },
+      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit, genders: [], categories: [], brands: [], sizes: [] },
       filteredProducts: this.state.allProducts,
     });
   };
@@ -173,6 +185,8 @@ class Catalog extends React.Component {
             maxPrice={this.state.maxPriceLimit}
             onReset={this.resetFilters}
             categories={this.state.uniqueCategories}
+            brands={this.state.uniqueBrands}
+            sizes={this.state.uniqueSizes}
           />
           <Products
             products={filteredProducts}

@@ -77,7 +77,7 @@ class PriceFilter extends React.Component {
     const { maxPrice: maxPriceLimit } = this.props;
 
     return (
-      <div className={styles.priceFilter}>
+      <div className={styles.filterContainer}>
         <h3 className={styles.filterSubtitle}>Цена</h3>
         <div className={styles.priceInputContainer}>
           <div className={styles.priceInput}>
@@ -186,7 +186,7 @@ class GenderFilter extends React.Component {
     const { genders } = this.state;
 
     return (
-      <div className={styles.genderFilter}>
+      <div className={styles.filterContainer}>
         <h3 className={styles.filterSubtitle}>Пол</h3>
         <div className={styles.checkboxGroup} >
           <label className={styles.checkboxLabel}>
@@ -264,7 +264,7 @@ class CategoryFilter extends React.Component {
     const availableCategories = this.props.availableCategories || [];
 
     return (
-      <div className={styles.categoryFilter}>
+      <div className={styles.filterContainer}>
         <h3 className={styles.filterSubtitle}>Категории</h3>
         <div className={styles.checkboxGroup} >
           {availableCategories.map((category) => (
@@ -286,14 +286,132 @@ class CategoryFilter extends React.Component {
   }
 }
 
+class BrandFilter extends React.Component {
+  state = {
+    brands: this.props.filters?.brands ?? [],
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.filters?.brands !== this.props.filters?.brands) {
+      this.setState({
+        brands: this.props.filters?.brands ?? [],
+      });
+    }
+  }
+
+  handleBrandChange = (e) => {
+    const { value, checked } = e.target;
+    this.setState(
+      (prevState) => {
+        let newBrands = [...prevState.brands];
+        if (checked) {
+          newBrands = [...newBrands, value];
+        } else {
+          newBrands = newBrands.filter((brand) => brand !== value);
+        }
+        return { brands: newBrands };
+      },
+      () => {
+        this.props.onFilterChange?.(this.state);
+      }
+    );
+  };
+  
+  render() {
+    const { brands } = this.state;
+    const availableBrands = this.props.availableBrands || [];
+
+    return (
+      <div className={styles.filterContainer}>
+        <h3 className={styles.filterSubtitle}>Бренд</h3>
+        <div className={styles.checkboxGroup} >
+          {availableBrands.map((brand) => (
+            <label key={brand} className={styles.checkboxLabel}>
+              <input
+                type='checkbox'
+                name='brand'
+                value={brand}
+                checked={brands.includes(brand)}
+                onChange={this.handleBrandChange}
+              />
+              <span className={styles.checkmark} />
+              {brand}
+            </label>
+          ))}
+        </div>
+      </div>
+    )
+  }
+}
+
+class SizeFilter extends React.Component {
+  state = {
+    sizes: this.props.filters?.sizes ?? [],
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.filters?.sizes !== this.props.filters?.sizes) {
+      this.setState({
+        sizes: this.props.filters?.sizes ?? [],
+      });
+    }
+  }
+
+  handleSizeChange = (e) => {
+    const { value, checked } = e.target;
+    this.setState(
+      (prevState) => {
+        let newSizes = [...prevState.sizes];
+        if (checked) {
+          newSizes = [...newSizes, value];
+        } else {
+          newSizes = newSizes.filter((size) => size !== value);
+        }
+        return { sizes: newSizes };
+      },
+      () => {
+        this.props.onFilterChange?.(this.state);
+      }
+    );
+  };
+  
+  render() {
+    const { sizes } = this.state;
+    const availableSizes = this.props.availableSizes || [];
+
+    return (
+      <div className={styles.filterContainer}>
+        <h3 className={styles.filterSubtitle}>Размер</h3>
+        <div className={styles.checkboxGroup} >
+          {availableSizes.map((size) => (
+            <label key={size} className={styles.checkboxLabel}>
+              <input
+                type='checkbox'
+                name='size'
+                value={size}
+                checked={sizes.includes(size)}
+                onChange={this.handleSizeChange}
+              />
+              <span className={styles.checkmark} />
+              {size}
+            </label>
+          ))}
+        </div>
+      </div>
+    )
+  }
+}
+
 class Filter extends React.Component {
     render() {
       const {
-        filters = { minPrice: 0, maxPrice: 100000, genders: [], categories: [] },
+        filters = { minPrice: 0, maxPrice: 100000, genders: [], categories: [], brands: [], sizes: [] },
         onFilterChange = () => {},
         maxPrice = 100000,
         onReset = () => {},
-        categories = []
+        categories = [],
+        brands = [],
+        sizes = []
       } = this.props;
 
       return (
@@ -302,6 +420,8 @@ class Filter extends React.Component {
           <PriceFilter filters={filters} onFilterChange={onFilterChange} maxPrice={maxPrice} />
           <GenderFilter filters={filters} onFilterChange={onFilterChange} />
           <CategoryFilter filters={filters} onFilterChange={onFilterChange} availableCategories={categories} />
+          <BrandFilter filters={filters} onFilterChange={onFilterChange} availableBrands={brands} />
+          <SizeFilter filters={filters} onFilterChange={onFilterChange} availableSizes={sizes} />
           <button className={styles.resetButton} onClick={onReset}>
             Сбросить фильтры
           </button>

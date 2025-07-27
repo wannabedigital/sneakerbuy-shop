@@ -13,8 +13,8 @@
   font-weight: 600;
 }
 
-.priceFilter, .genderFilter, .categoryFilter {
-  margin-top: 40px;
+.filterContainer {
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
