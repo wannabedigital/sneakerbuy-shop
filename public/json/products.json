@@ -108,5 +108,15 @@
     "sizes": ["38", "39", "40", "41"],
     "gender": "woman",
     "category": "Кроссовки"
+  },
+  {
+    "product code": "012",
+    "brand": "Prada",
+    "model": "Leather Loafers",
+    "price": 40000,
+    "img": "/img/product11.jpg",
+    "sizes": ["42", "43", "44"],
+    "gender": "man",
+    "category": "Туфли"
   }
 ]

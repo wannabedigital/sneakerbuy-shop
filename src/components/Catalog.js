@@ -94,11 +94,13 @@ class Catalog extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         const maxPriceLimit = Math.max(...data.map((p) => p.price));
+        const uniqueCategories = [...new Set(data.map(product => product.category))];
         this.setState({
           allProducts: data,
           filteredProducts: data,
           filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [], categories: [] },
           maxPriceLimit,
+          uniqueCategories
         });
       })
       .catch((error) => console.error('Ошибка загрузки товаров:', error));
@@ -170,6 +172,7 @@ class Catalog extends React.Component {
             onFilterChange={this.handleFilterChange}
             maxPrice={this.state.maxPriceLimit}
             onReset={this.resetFilters}
+            categories={this.state.uniqueCategories}
           />
           <Products
             products={filteredProducts}

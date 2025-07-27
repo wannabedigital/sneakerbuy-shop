@@ -49,6 +49,7 @@
 	border-radius: 5px 5px 0 0;
 	object-fit: scale-down;
 	margin: 0 auto;
+  font-size: 20px;
 }
 
 .productDescription {
@@ -72,7 +73,9 @@
 }
 
 .productDescription select {
+	width: 100%;
 	font-size: 13px;
+	background-color: #F6F6F6;
 }
 
 .productDescription button {
@@ -84,6 +87,6 @@
 	border: none;
 	border-radius: 5px;
 	color: #ffffff;
-	margin: 10px auto 0;
+	margin: 8px auto 0;
 	padding: 10px;
 }

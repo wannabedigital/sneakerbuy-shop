@@ -261,44 +261,25 @@ class CategoryFilter extends React.Component {
   
   render() {
     const { categories } = this.state;
+    const availableCategories = this.props.availableCategories || [];
 
     return (
       <div className={styles.categoryFilter}>
         <h3 className={styles.filterSubtitle}>Категории</h3>
         <div className={styles.checkboxGroup} >
-          <label className={styles.checkboxLabel}>
-            <input
-              type='checkbox'
-              name='category'
-              value='Кроссовки'
-              checked={categories.includes('Кроссовки')}
-              onChange={this.handleCategoryChange}
-            />
-            <span className={styles.checkmark} />
-            Кроссовки
-          </label>
-          <label className={styles.checkboxLabel}>
-            <input
-              type='checkbox'
-              name='category'
-              value='Кеды'
-              checked={categories.includes('Кеды')}
-              onChange={this.handleCategoryChange}
-            />
-            <span className={styles.checkmark} />
-            Кеды
-          </label>
-          <label className={styles.checkboxLabel}>
-            <input
-              type='checkbox'
-              name='category'
-              value='Ботинки'
-              checked={categories.includes('Ботинки')}
-              onChange={this.handleCategoryChange}
-            />
-            <span className={styles.checkmark} />
-            Ботинки
-          </label>
+          {availableCategories.map((category) => (
+            <label key={category} className={styles.checkboxLabel}>
+              <input
+                type='checkbox'
+                name='category'
+                value={category}
+                checked={categories.includes(category)}
+                onChange={this.handleCategoryChange}
+              />
+              <span className={styles.checkmark} />
+              {category}
+            </label>
+          ))}
         </div>
       </div>
     )
@@ -307,14 +288,20 @@ class CategoryFilter extends React.Component {
 
 class Filter extends React.Component {
     render() {
-      const { filters = { minPrice: 0, maxPrice: 100000, genders: [], categories: [] }, onFilterChange = () => {}, maxPrice = 100000, onReset = () => {} } = this.props;
+      const {
+        filters = { minPrice: 0, maxPrice: 100000, genders: [], categories: [] },
+        onFilterChange = () => {},
+        maxPrice = 100000,
+        onReset = () => {},
+        categories = []
+      } = this.props;
 
       return (
         <section className={styles.mainFilter}>
           <h1 className={styles.filterTitle}>Фильтр</h1>
           <PriceFilter filters={filters} onFilterChange={onFilterChange} maxPrice={maxPrice} />
           <GenderFilter filters={filters} onFilterChange={onFilterChange} />
-          <CategoryFilter filters={filters} onFilterChange={onFilterChange} />
+          <CategoryFilter filters={filters} onFilterChange={onFilterChange} availableCategories={categories} />
           <button className={styles.resetButton} onClick={onReset}>
             Сбросить фильтры
           </button>
