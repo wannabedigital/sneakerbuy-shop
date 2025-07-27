@@ -6,7 +6,8 @@
     "price": 12000,
     "img": "/img/product1.jpg",
     "sizes": ["38", "39", "40", "41"],
-    "gender": "man"
+    "gender": "man",
+    "category": "Кроссовки"
   },
   {
     "product code": "002",
@@ -15,7 +16,8 @@
     "price": 15000,
     "img": "/img/product2.jpg",
     "sizes": ["39", "40", "41", "42"],
-    "gender": "man"
+    "gender": "man",
+    "category": "Кроссовки"
   },
   {
     "product code": "003",
@@ -24,7 +26,8 @@
     "price": 10000,
     "img": "/img/product3.jpg",
     "sizes": ["37", "38", "39", "40"],
-    "gender": "man"
+    "gender": "man",
+    "category": "Кроссовки"
   },
   {
     "product code": "004",
@@ -32,8 +35,9 @@
     "model": "Classic Leather",
     "price": 9000,
     "img": "/img/product4.jpg",
-    "sizes": ["38", "39", "40", "41"],
-    "gender": "woman"
+    "sizes": ["35", "36", "37", "39", "40", "41"],
+    "gender": "woman",
+    "category": "Кеды"
   },
   {
     "product code": "005",
@@ -42,7 +46,8 @@
     "price": 11000,
     "img": "/img/product5.jpg",
     "sizes": ["39", "40", "41", "42"],
-    "gender": "unisex"
+    "gender": "unisex",
+    "category": "Кроссовки"
   },
   {
     "product code": "006",
@@ -51,7 +56,8 @@
     "price": 13000,
     "img": "/img/product6.jpg",
     "sizes": ["38", "39", "40", "41"],
-    "gender": "unisex"
+    "gender": "unisex",
+    "category": "Кроссовки"
   },
   {
     "product code": "007",
@@ -60,7 +66,8 @@
     "price": 8000,
     "img": "/img/product7.jpg",
     "sizes": ["37", "38", "39", "40"],
-    "gender": "unisex"
+    "gender": "unisex",
+    "category": "Кроссовки"
   },
   {
     "product code": "008",
@@ -69,7 +76,8 @@
     "price": 7000,
     "img": "/img/product8.jpg",
     "sizes": ["36", "37", "38", "39"],
-    "gender": "woman"
+    "gender": "woman",
+    "category": "Кроссовки"
   },
   {
     "product code": "009",
@@ -78,15 +86,27 @@
     "price": 14000,
     "img": "/img/product9.jpg",
     "sizes": ["39", "40", "41", "42"],
-    "gender": "man"
+    "gender": "man",
+    "category": "Кроссовки"
   },
   {
     "product code": "010",
+    "brand": "Carol Cristian Poell",
+    "model": "Rubber Band Boots",
+    "price": 57000,
+    "img": "/img/product10.jpg",
+    "sizes": ["40", "41", "42", "43", "44"],
+    "gender": "man",
+    "category": "Ботинки"
+  },
+  {
+    "product code": "011",
     "brand": "Saucony",
     "model": "Jazz Original",
     "price": 9500,
-    "img": "/img/product10.jpg",
+    "img": "/img/product11.jpg",
     "sizes": ["38", "39", "40", "41"],
-    "gender": "woman"
+    "gender": "woman",
+    "category": "Кроссовки"
   }
 ]

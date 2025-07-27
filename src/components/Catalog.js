@@ -9,6 +9,9 @@ import Breadcrumbs from './Breadcrumbs';
 import Filter from './Filter';
 import UnderDevelope from './UnderDevelope';
 
+// Images
+import sadIcon from '../img/svg_icons/sad_icon.svg';
+
 class Products extends React.Component {
   handleAddToCart = (product) => {
     const { selectedSize, addToCart } = this.props;
@@ -28,6 +31,10 @@ class Products extends React.Component {
         {products.length === 0 ? (
           <div className={styles.nothingFound}>
             <p>Ничего не найдено</p>
+            <Image
+              image={sadIcon}
+              alt='sad emoji*'
+            />
           </div>
         ) : (
           products.map((product) => (
@@ -76,7 +83,8 @@ class Catalog extends React.Component {
     filters: {
       minPrice: 0,
       maxPrice: 100000,
-      genders: []
+      genders: [],
+      categories: []
     },
     maxPriceLimit: 100000,
   };
@@ -89,7 +97,7 @@ class Catalog extends React.Component {
         this.setState({
           allProducts: data,
           filteredProducts: data,
-          filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [] },
+          filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [], categories: [] },
           maxPriceLimit,
         });
       })
@@ -103,7 +111,8 @@ class Catalog extends React.Component {
         (product) =>
           product.price >= filters.minPrice &&
           product.price <= filters.maxPrice &&
-          (filters.genders.length === 0 || filters.genders.includes(product.gender))
+          (filters.genders.length === 0 || filters.genders.includes(product.gender)) &&
+          (filters.categories.length === 0 || filters.categories.includes(product.category))
       );
       return { filters, filteredProducts };
     });
@@ -139,7 +148,7 @@ class Catalog extends React.Component {
 
   resetFilters = () => {
     this.setState({
-      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit, genders: [] },
+      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit, genders: [], categories: [] },
       filteredProducts: this.state.allProducts,
     });
   };
