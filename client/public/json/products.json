@@ -114,9 +114,29 @@
     "brand": "Prada",
     "model": "Leather Loafers",
     "price": 40000,
-    "img": "/img/product11.jpg",
+    "img": "/img/product12.jpg",
     "sizes": ["42", "43", "44"],
     "gender": "man",
     "category": "Туфли"
+  },
+  {
+    "product code": "013",
+    "brand": "Prada",
+    "model": "Derby Shoes",
+    "price": 55000,
+    "img": "/img/product13.jpg",
+    "sizes": ["39", "41", "42", "43", "46"],
+    "gender": "man",
+    "category": "Туфли"
+  },
+  {
+    "product code": "000",
+    "brand": "placeholder brand",
+    "model": "placeholder model",
+    "price": 100,
+    "img": "/img/placeholder.jpg",
+    "sizes": ["placeholder size"],
+    "gender": "unisex",
+    "category": "placeholder category"
   }
 ]

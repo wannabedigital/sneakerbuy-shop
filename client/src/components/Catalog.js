@@ -7,6 +7,7 @@ import styles from '../styles/catalog.module.css';
 import Breadcrumbs from './Breadcrumbs';
 import Filter from './Filter';
 import Products from './ProductsList';
+import Pagination from './Pagination';
 import UnderDevelope from './UnderDevelope';
 
 class Catalog extends React.Component {
@@ -23,6 +24,8 @@ class Catalog extends React.Component {
       sizes: []
     },
     maxPriceLimit: 100000,
+    currentPage: 1,
+    productsPerPage: 28
   };
 
   componentDidMount() {
@@ -73,6 +76,10 @@ class Catalog extends React.Component {
     }));
   };
 
+  handlePageChange = (newPage) => {
+    this.setState({ currentPage: newPage });
+  }
+
   addToCart = (product, size) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItem = cart.find(
@@ -103,11 +110,16 @@ class Catalog extends React.Component {
   };
 
   render() {
-    const { filteredProducts, selectedSize, filters } = this.state;
     const breadcrumbItems = [
       { name: 'Главная', path: '/' },
       { name: 'Каталог', path: '/catalog' },
     ];
+    const { filteredProducts, selectedSize, filters, currentPage, productsPerPage } = this.state;
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
 
     return (
       <main className={styles.main}>
@@ -125,10 +137,15 @@ class Catalog extends React.Component {
           />
           <div className={styles.containerFlypagePagination}>
             <Products
-              products={filteredProducts}
+              products={productsToDisplay}
               selectedSize={selectedSize}
               onSizeChange={this.handleSizeChange}
               addToCart={this.addToCart}
+            />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={this.handlePageChange}
             />
           </div>
         </div>
