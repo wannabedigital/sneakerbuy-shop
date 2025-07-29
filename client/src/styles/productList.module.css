@@ -1,3 +1,27 @@
+.nothingFound {
+	grid-column: 1 / -1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 32px;
+	font-weight: 500;
+}
+
+.nothingFound p, .nothingFound img {
+	width: 40%;
+	height: auto;
+}
+
+.nothingFound img {
+	width: 20%;
+	height: auto;
+}
+
+.nothingFound img:hover {
+	transition: 0.5s;
+	transform: rotate(30deg)
+}
+
 .products {
 	display: grid;
 	grid-template-columns: repeat(4, 202.5px);

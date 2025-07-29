@@ -28,7 +28,7 @@ class Catalog extends React.Component {
     },
     maxPriceLimit: 100000,
     currentPage: 1,
-    productsPerPage: 28,
+    productsPerPage: 5, // хахахахха ебанат
     totalPages: 0,
     totalProducts: 0,
     uniqueCategories: [],
@@ -167,7 +167,19 @@ class Catalog extends React.Component {
     } = this.state;
 
     // Типо UX жосткий
-    if (loading) return <div className={styles.main}>Загрузка...</div>;
+    if (loading) return(
+      <div className={styles.loadingContainer}>
+        <div className={styles.loading}>
+          <div>G</div>
+          <div>N</div>
+          <div>I</div>
+          <div>D</div>
+          <div>A</div>
+          <div>O</div>
+          <div>L</div>
+        </div>
+      </div>
+    )
     if (error) return <div className={styles.main}>Ошибка: {error}</div>;
 
     return (
