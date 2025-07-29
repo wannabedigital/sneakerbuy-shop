@@ -10,10 +10,13 @@ import Products from './ProductsList';
 import Pagination from './Pagination';
 import UnderDevelope from './UnderDevelope';
 
+// Services
+import { fetchProducts, initializeProducts } from '../services/productService';
+
 class Catalog extends React.Component {
   state = {
     allProducts: [],
-    filteredProducts: [],
+    displayedProducts: [],
     selectedSize: {},
     filters: {
       minPrice: 0,
@@ -25,48 +28,86 @@ class Catalog extends React.Component {
     },
     maxPriceLimit: 100000,
     currentPage: 1,
-    productsPerPage: 28
+    productsPerPage: 28,
+    totalPages: 0,
+    totalProducts: 0,
+    uniqueCategories: [],
+    uniqueBrands: [],
+    uniqueSizes: [],
+    loading: true,
+    error: null
   };
 
   componentDidMount() {
-    fetch('/json/products.json')
-      .then((response) => response.json())
-      .then((data) => {
-        const maxPriceLimit = Math.max(...data.map((product) => product.price));
-        const uniqueCategories = [...new Set(data.map(product => product.category))].sort();
-        const uniqueBrands = [...new Set(data.map(product => product.brand))].sort();
-        const uniqueSizes = [...new Set(data.flatMap(product => product.sizes))].sort((a, b) => {
-          const numA = Number(a);
-          const numB = Number(b);
-          return numA - numB;
-        });
-
-        this.setState({
-          allProducts: data,
-          filteredProducts: data,
-          filters: { minPrice: 0, maxPrice: maxPriceLimit, genders: [], categories: [], brands:[], sizes: [] },
-          maxPriceLimit,
-          uniqueCategories,
-          uniqueBrands,
-          uniqueSizes
-        });
-      })
-      .catch((error) => console.error('Ошибка загрузки товаров:', error));
+    this.loadInitialData();
   }
 
-  handleFilterChange = (newFilters) => {
-    this.setState((prevState) => {
-      const filters = { ...prevState.filters, ...newFilters };
-      const filteredProducts = prevState.allProducts.filter(
-        (product) =>
-          product.price >= filters.minPrice &&
-          product.price <= filters.maxPrice &&
-          (filters.genders.length === 0 || filters.genders.includes(product.gender)) &&
-          (filters.categories.length === 0 || filters.categories.includes(product.category)) &&
-          (filters.brands.length === 0 ||filters.brands.includes(product.brand)) &&
-          (filters.sizes.length === 0 || filters.sizes.some(size => product.sizes.includes(size)))
+  loadInitialData = async () => {
+    this.setState({ loading: true, error: null });
+    
+    try {
+      const initData = await initializeProducts();
+      
+      this.setState({
+        allProducts: initData.allProducts,
+        uniqueCategories: initData.uniqueCategories,
+        uniqueBrands: initData.uniqueBrands,
+        uniqueSizes: initData.uniqueSizes,
+        maxPriceLimit: initData.maxPriceLimit,
+        filters: { 
+          minPrice: 0, 
+          maxPrice: initData.maxPriceLimit, 
+          genders: [], 
+          categories: [], 
+          brands: [], 
+          sizes: [] 
+        },
+        loading: false
+      }, () => {
+        this.loadFilteredProducts();
+      });
+    } catch (error) {
+      console.error('Ошибка инициализации данных:', error);
+      this.setState({ 
+        loading: false, 
+        error: 'Не удалось загрузить товары'
+      });
+    }
+  };
+
+  loadFilteredProducts = async () => {
+    const { allProducts, filters, currentPage, productsPerPage } = this.state;
+    
+    try {
+      const result = await fetchProducts(
+        allProducts,
+        filters,
+        currentPage,
+        productsPerPage
       );
-      return { filters, filteredProducts };
+      
+      this.setState({
+        displayedProducts: result.products,
+        totalPages: result.totalPages,
+        totalProducts: result.totalProducts
+      });
+    } catch (error) {
+      console.error('Ошибка загрузки отфильтрованных товаров:', error);
+    }
+  };
+
+  handleFilterChange = (newFilters) => {
+    this.setState((prevState) => ({
+      filters: { ...prevState.filters, ...newFilters },
+      currentPage: 1
+    }), () => {
+      this.loadFilteredProducts();
+    });
+  };
+
+  handlePageChange = (newPage) => {
+    this.setState({ currentPage: newPage }, () => {
+      this.loadFilteredProducts();
     });
   };
 
@@ -75,10 +116,6 @@ class Catalog extends React.Component {
       selectedSize: { ...prevState.selectedSize, [productCode]: size },
     }));
   };
-
-  handlePageChange = (newPage) => {
-    this.setState({ currentPage: newPage });
-  }
 
   addToCart = (product, size) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -114,12 +151,24 @@ class Catalog extends React.Component {
       { name: 'Главная', path: '/' },
       { name: 'Каталог', path: '/catalog' },
     ];
-    const { filteredProducts, selectedSize, filters, currentPage, productsPerPage } = this.state;
-    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    
+    const { 
+      displayedProducts, 
+      selectedSize, 
+      filters, 
+      currentPage, 
+      totalPages,
+      loading,
+      error,
+      uniqueCategories,
+      uniqueBrands,
+      uniqueSizes,
+      maxPriceLimit
+    } = this.state;
 
-    const startIndex = (currentPage - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-    const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+    // Типо UX жосткий
+    if (loading) return <div className={styles.main}>Загрузка...</div>;
+    if (error) return <div className={styles.main}>Ошибка: {error}</div>;
 
     return (
       <main className={styles.main}>
@@ -129,15 +178,15 @@ class Catalog extends React.Component {
           <Filter
             filters={filters}
             onFilterChange={this.handleFilterChange}
-            maxPrice={this.state.maxPriceLimit}
+            maxPrice={maxPriceLimit}
             onReset={this.resetFilters}
-            categories={this.state.uniqueCategories}
-            brands={this.state.uniqueBrands}
-            sizes={this.state.uniqueSizes}
+            categories={uniqueCategories}
+            brands={uniqueBrands}
+            sizes={uniqueSizes}
           />
           <div className={styles.containerFlypagePagination}>
             <Products
-              products={productsToDisplay}
+              products={displayedProducts}
               selectedSize={selectedSize}
               onSizeChange={this.handleSizeChange}
               addToCart={this.addToCart}

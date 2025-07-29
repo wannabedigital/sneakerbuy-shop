@@ -4,7 +4,7 @@
     "brand": "Nike",
     "model": "Air Max 90",
     "price": 12000,
-    "img": "/img/product1.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["38", "39", "40", "41"],
     "gender": "man",
     "category": "Кроссовки"
@@ -14,7 +14,7 @@
     "brand": "Adidas",
     "model": "Yeezy Boost 350",
     "price": 15000,
-    "img": "/img/product2.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["39", "40", "41", "42"],
     "gender": "man",
     "category": "Кроссовки"
@@ -24,7 +24,7 @@
     "brand": "Puma",
     "model": "RS-X",
     "price": 10000,
-    "img": "/img/product3.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["37", "38", "39", "40"],
     "gender": "man",
     "category": "Кроссовки"
@@ -34,7 +34,7 @@
     "brand": "Reebok",
     "model": "Classic Leather",
     "price": 9000,
-    "img": "/img/product4.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["35", "36", "37", "39", "40", "41"],
     "gender": "woman",
     "category": "Кеды"
@@ -44,7 +44,7 @@
     "brand": "New Balance",
     "model": "574",
     "price": 11000,
-    "img": "/img/product5.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["39", "40", "41", "42"],
     "gender": "unisex",
     "category": "Кроссовки"
@@ -54,7 +54,7 @@
     "brand": "Asics",
     "model": "Gel-Kayano",
     "price": 13000,
-    "img": "/img/product6.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["38", "39", "40", "41"],
     "gender": "unisex",
     "category": "Кроссовки"
@@ -64,7 +64,7 @@
     "brand": "Vans",
     "model": "Old Skool",
     "price": 8000,
-    "img": "/img/product7.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["37", "38", "39", "40"],
     "gender": "unisex",
     "category": "Кроссовки"
@@ -74,7 +74,7 @@
     "brand": "Converse",
     "model": "Chuck Taylor",
     "price": 7000,
-    "img": "/img/product8.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["36", "37", "38", "39"],
     "gender": "woman",
     "category": "Кроссовки"
@@ -84,7 +84,7 @@
     "brand": "Under Armour",
     "model": "HOVR Phantom",
     "price": 14000,
-    "img": "/img/product9.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["39", "40", "41", "42"],
     "gender": "man",
     "category": "Кроссовки"
@@ -94,7 +94,7 @@
     "brand": "Carol Cristian Poell",
     "model": "Rubber Band Boots",
     "price": 57000,
-    "img": "/img/product10.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["40", "41", "42", "43", "44"],
     "gender": "man",
     "category": "Ботинки"
@@ -104,7 +104,7 @@
     "brand": "Saucony",
     "model": "Jazz Original",
     "price": 9500,
-    "img": "/img/product11.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["38", "39", "40", "41"],
     "gender": "woman",
     "category": "Кроссовки"
@@ -114,7 +114,7 @@
     "brand": "Prada",
     "model": "Leather Loafers",
     "price": 40000,
-    "img": "/img/product12.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["42", "43", "44"],
     "gender": "man",
     "category": "Туфли"
@@ -124,17 +124,427 @@
     "brand": "Prada",
     "model": "Derby Shoes",
     "price": 55000,
-    "img": "/img/product13.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["39", "41", "42", "43", "46"],
     "gender": "man",
     "category": "Туфли"
+  },
+    {
+    "product code": "014",
+    "brand": "Balenciaga",
+    "model": "Triple S",
+    "price": 65000,
+    "img": "../img/placeholder.png",
+    "sizes": ["39", "40", "41", "42", "43"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "015",
+    "brand": "Gucci",
+    "model": "Ace Sneakers",
+    "price": 52000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "016",
+    "brand": "Y-3",
+    "model": "Qasa High",
+    "price": 22000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "017",
+    "brand": "Rick Owens",
+    "model": "Geobasket",
+    "price": 45000,
+    "img": "../img/placeholder.png",
+    "sizes": ["39", "40", "41", "42", "43"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "018",
+    "brand": "Alexander McQueen",
+    "model": "Oversized Sneakers",
+    "price": 60000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "019",
+    "brand": "Versace",
+    "model": "Chain Reaction",
+    "price": 58000,
+    "img": "../img/placeholder.png",
+    "sizes": ["39", "40", "41", "42", "43"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "020",
+    "brand": "Bottega Veneta",
+    "model": "Arctic",
+    "price": 53000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "021",
+    "brand": "Fendi",
+    "model": "Match",
+    "price": 49000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "022",
+    "brand": "Louis Vuitton",
+    "model": "Archlight",
+    "price": 75000,
+    "img": "../img/placeholder.png",
+    "sizes": ["39", "40", "41", "42", "43"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "023",
+    "brand": "Dolce & Gabbana",
+    "model": "Sneakers",
+    "price": 42000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "man",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "024",
+    "brand": "Burberry",
+    "model": "Vintage Check",
+    "price": 38000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "025",
+    "brand": "Givenchy",
+    "model": "Urban Street",
+    "price": 46000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "026",
+    "brand": "Saint Laurent",
+    "model": "Court Classic",
+    "price": 41000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "027",
+    "brand": "Valentino",
+    "model": "Rockstud",
+    "price": 54000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "028",
+    "brand": "Chanel",
+    "model": "Coco Neige",
+    "price": 68000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "woman",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "029",
+    "brand": "Hermès",
+    "model": "Oran",
+    "price": 72000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Сандалии"
+  },
+  {
+    "product code": "030",
+    "brand": "Celine",
+    "model": "Triomphe",
+    "price": 59000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "031",
+    "brand": "Jacquemus",
+    "model": "Le Bambidou",
+    "price": 32000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "woman",
+    "category": "Сандалии"
+  },
+  {
+    "product code": "032",
+    "brand": "Common Projects",
+    "model": "Achilles Low",
+    "price": 35000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "033",
+    "brand": "Maison Margiela",
+    "model": "Tabi",
+    "price": 48000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "034",
+    "brand": "Acne Studios",
+    "model": "Detroit Boot",
+    "price": 28000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Ботинки"
+  },
+  {
+    "product code": "035",
+    "brand": "Golden Goose",
+    "model": "Superstar",
+    "price": 22000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "036",
+    "brand": "Veja",
+    "model": "V-10",
+    "price": 18000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "037",
+    "brand": "Axel Arigato",
+    "model": "Clean 90",
+    "price": 24000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "038",
+    "brand": "Etienne Aigner",
+    "model": "Suede Loafer",
+    "price": 15000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "man",
+    "category": "Туфли"
+  },
+  {
+    "product code": "039",
+    "brand": "Dr. Martens",
+    "model": "1460",
+    "price": 16000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Ботинки"
+  },
+  {
+    "product code": "040",
+    "brand": "Timberland",
+    "model": "Premium Boot",
+    "price": 18000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "man",
+    "category": "Ботинки"
+  },
+  {
+    "product code": "041",
+    "brand": "Clarks",
+    "model": "Desert Boot",
+    "price": 12000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "man",
+    "category": "Кеды"
+  },
+  {
+    "product code": "042",
+    "brand": "Ecco",
+    "model": "Soft 7",
+    "price": 14000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "043",
+    "brand": "Hoka One One",
+    "model": "Bondi",
+    "price": 19000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "044",
+    "brand": "On Running",
+    "model": "Cloudswift",
+    "price": 21000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "045",
+    "brand": "Salomon",
+    "model": "Speedcross",
+    "price": 17000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "046",
+    "brand": "Merrell",
+    "model": "Moab",
+    "price": 13000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Ботинки"
+  },
+  {
+    "product code": "047",
+    "brand": "Cole Haan",
+    "model": "GrandPronto",
+    "price": 20000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "man",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "048",
+    "brand": "Johnston & Murphy",
+    "model": "Morris",
+    "price": 18000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "man",
+    "category": "Туфли"
+  },
+  {
+    "product code": "049",
+    "brand": "Skechers",
+    "model": "Go Walk",
+    "price": 8000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Кроссовки"
+  },
+  {
+    "product code": "050",
+    "brand": "Crocs",
+    "model": "Classic Clog",
+    "price": 5000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Сандалии"
+  },
+  {
+    "product code": "051",
+    "brand": "Birkenstock",
+    "model": "Arizona",
+    "price": 7000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Сандалии"
+  },
+  {
+    "product code": "052",
+    "brand": "Teva",
+    "model": "Hurricane",
+    "price": 9000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Сандалии"
+  },
+  {
+    "product code": "053",
+    "brand": "UGG",
+    "model": "Classic Mini",
+    "price": 15000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "woman",
+    "category": "Ботинки"
+  },
+  {
+    "product code": "054",
+    "brand": "Sorel",
+    "model": "Caribou",
+    "price": 16000,
+    "img": "../img/placeholder.png",
+    "sizes": ["38", "39", "40", "41", "42"],
+    "gender": "unisex",
+    "category": "Ботинки"
   },
   {
     "product code": "000",
     "brand": "placeholder brand",
     "model": "placeholder model",
     "price": 100,
-    "img": "/img/placeholder.jpg",
+    "img": "../img/placeholder.png",
     "sizes": ["placeholder size"],
     "gender": "unisex",
     "category": "placeholder category"
