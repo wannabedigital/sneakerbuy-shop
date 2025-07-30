@@ -3,8 +3,12 @@ import React from 'react';
 // Styles
 import styles from '../styles/feedback.module.css';
 
+// Setvices
+import * as feedbackService from '../services/feedbackService';
+
 class FeedbackRequestSection extends React.Component {
   render() {
+    const { formData } = this.props;
     return (
       <section className={styles.feedbackRequest}>
         <h2 className={styles.feedbackSectionTitle}>Обращение</h2>
@@ -12,16 +16,16 @@ class FeedbackRequestSection extends React.Component {
           <p><label htmlFor='feedbackTypeSelect'>Выберите тип обращения</label></p>
           <select
             id='feedbackTypeSelect'
-            name='feedbackType'
-            placeholder='Тип обращения'
-            defaultValue=''
+            name='type'
+            value={formData.type}
             onChange={this.props.onChange}
-            required
           >
             <option value='' disabled>Тип обращения</option>
-            <option value='gratitude'>Благодарность</option>
-            <option value='complaint'>Жалоба</option>
-            <option value='suggestion'>Совет</option>
+            {feedbackService.getFeedbackTypes().map(type => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
           </select>
         </div>
         <div id='orderNumberInputDiv' className={styles.inputField}>
@@ -31,8 +35,8 @@ class FeedbackRequestSection extends React.Component {
             id='orderNumberInput'
             name='orderNumber'
             placeholder='Номер заказа'
+            value={formData.orderNumber}
             onChange={this.props.onChange}
-            required
           />
         </div>
         <div id='messageTextareaDiv' className={styles.inputField}>
@@ -42,8 +46,8 @@ class FeedbackRequestSection extends React.Component {
             name='message'
             className={styles.messageTextarea}
             placeholder='Обращение'
+            value={formData.message}
             onChange={this.props.onChange}
-            required
           />
         </div>
       </section>
@@ -53,6 +57,7 @@ class FeedbackRequestSection extends React.Component {
 
 class FeedbackPersonalSection extends React.Component {
   render() {
+    const { formData } = this.props;
     return (
       <section className={styles.feedbackPersonal}>
         <h2 className={styles.feedbackSectionTitle}>Данные о себе</h2>
@@ -63,8 +68,8 @@ class FeedbackPersonalSection extends React.Component {
             id='fullNameInput'
             name='fullName'
             placeholder='Фамилия Имя'
+            value={formData.fullName}
             onChange={this.props.onChange}
-            required
           />
         </div>
         <div id='phoneNumInputDiv' className={styles.inputField}>
@@ -74,8 +79,8 @@ class FeedbackPersonalSection extends React.Component {
             id='phoneNumInput'
             name='phoneNum'
             placeholder='Телефон'
+            value={formData.phoneNum}
             onChange={this.props.onChange}
-            required
           />
         </div>
         <div id='emailInputDiv' className={styles.inputField}>
@@ -85,8 +90,8 @@ class FeedbackPersonalSection extends React.Component {
             id='emailInput'
             name='email'
             placeholder='E-mail'
+            value={formData.email}
             onChange={this.props.onChange}
-            required
           />
         </div>
         <div id='agreementDiv' className={styles.inputField}>
@@ -96,6 +101,7 @@ class FeedbackPersonalSection extends React.Component {
               id='feedbackRequestCheckbox'
               name='feedbackRequest'
               className={styles.checkboxInput}
+              value={formData.feedbackRequest}
               onChange={this.props.onChange}
             />
             <span className={styles.customCheckbox} />
@@ -107,8 +113,8 @@ class FeedbackPersonalSection extends React.Component {
               id='feedbackDataProcessingCheckbox'
               name='dataProcessing'
               className={styles.checkboxInput}
+              value={formData.dataProcessing}
               onChange={this.props.onChange}
-              required
             />
             <span className={styles.customCheckbox} />
             <label htmlFor='feedbackDataProcessingCheckbox' className={styles.checkmarkContact}>Я принимаю cогласие на обработку персональных данных, пользовательское соглашение, политику конфиденциальности и условия Клубной программы</label>
@@ -143,7 +149,8 @@ class FeedbackForm extends React.Component {
       feedbackRequest: false,
       dataProcessing: false
     },
-    submitted: false
+    submitted: false,
+    errors: []
   };
 
   handleChange = (e) => {
@@ -156,12 +163,37 @@ class FeedbackForm extends React.Component {
     }));
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { formData } = this.state;
-    console.log('Form Data:', formData);
-    localStorage.setItem('feedback', JSON.stringify(formData));
-    this.setState({ submitted: true });
+    
+    const validation = feedbackService.validateFeedbackData(formData);
+    
+    if (!validation.isValid) {
+      this.setState({ errors: validation.errors });
+      return;
+    }
+    
+    this.setState({ errors: [] });
+    
+    try {
+      const preparedData = feedbackService.prepareFeedbackData(formData);
+      const result = await feedbackService.submitFeedback(preparedData);
+      
+      if (result.success) {
+        feedbackService.saveFeedbackToStorage(preparedData);
+        this.setState({ submitted: true });
+      } else {
+        this.setState({ 
+          errors: ['Ошибка при отправке обращения. Пожалуйста, попробуйте еще раз.'] 
+        });
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке обращения:', error);
+      this.setState({ 
+        errors: ['Ошибка при отправке обращения. Пожалуйста, попробуйте еще раз.'] 
+      });
+    }
   };
 
   handleReset = () => {
@@ -176,12 +208,14 @@ class FeedbackForm extends React.Component {
         feedbackRequest: false,
         dataProcessing: false
       },
-      submitted: false
+      submitted: false,
+      errors: []
     });
   };
 
   render() {
-    const { submitted } = this.state;
+    const { submitted, errors } = this.state;
+    console.log(errors);
 
     return (
       <form id='feedbackFormID' className={styles.feedbackForm} onSubmit={this.handleSubmit}>
@@ -203,11 +237,33 @@ class FeedbackForm extends React.Component {
             </div>
           ) : (
             <>
-              <section className={styles.flexSection}>
-                <FeedbackRequestSection onChange={this.handleChange} />
-                <FeedbackPersonalSection onChange={this.handleChange} />
-              </section>
-              <FeedbackSendButton />
+              {errors.length > 0 ? (
+                <>
+                  <div className={styles.errorContainer}>
+                    <h2>Ошибки</h2>
+                    <ul>
+                      {errors.map((error, index) => (
+                        <li key={index} className={styles.errorMessage}>{error}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button
+                    type='button'
+                    className={styles.resetButton}
+                    onClick={this.handleReset}
+                  >
+                    Попробовать ещё раз
+                  </button>
+                </>
+              ) : (
+                <>
+                  <section className={styles.flexSection}>
+                    <FeedbackRequestSection formData={this.state.formData} onChange={this.handleChange} />
+                    <FeedbackPersonalSection formData={this.state.formData} onChange={this.handleChange} />
+                  </section>
+                  <FeedbackSendButton />
+                </>
+              )}
             </>
           )}
         </main>

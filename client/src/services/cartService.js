@@ -121,7 +121,7 @@ export const prepareOrderData = (orderData, cart, total) => {
   };
 };
 
-// заглушка для будущего бЕнда
+// заглушка для будущего бэка
 export const submitOrder = async (orderData) => {
   console.log('Отправка заказа:', orderData);
   
