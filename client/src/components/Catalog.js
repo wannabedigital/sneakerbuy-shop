@@ -8,7 +8,6 @@ import Breadcrumbs from './Breadcrumbs';
 import Filter from './Filter';
 import Products from './ProductsList';
 import Pagination from './Pagination';
-import UnderDevelope from './UnderDevelope';
 
 // Services
 import * as productService from '../services/productService';
@@ -28,7 +27,7 @@ class Catalog extends React.Component {
     },
     maxPriceLimit: 100000,
     currentPage: 1,
-    productsPerPage: 5, // хахахахха ебанат
+    productsPerPage: 12, // хахахахха ебанат
     totalPages: 0,
     totalProducts: 0,
     uniqueCategories: [],
@@ -194,7 +193,6 @@ class Catalog extends React.Component {
     return (
       <main className={styles.main}>
         <Breadcrumbs items={breadcrumbItems} />
-        <UnderDevelope />
         <div className={styles.containerFilterFlypages}>
           <Filter
             filters={filters}

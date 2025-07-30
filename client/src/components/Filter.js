@@ -263,24 +263,34 @@ class CategoryFilter extends React.Component {
     const { categories } = this.state;
     const availableCategories = this.props.availableCategories || [];
 
+    const checkboxGroup = (
+      <div className={styles.checkboxGroup}>
+        {availableCategories.map((category) => (
+          <label key={category} className={styles.checkboxLabel}>
+            <input
+              type='checkbox'
+              name='category'
+              value={category}
+              checked={categories.includes(category)}
+              onChange={this.handleCategoryChange}
+            />
+            <span className={styles.checkmark} />
+            {category}
+          </label>
+        ))}
+      </div>
+    );
+
     return (
       <div className={styles.filterContainer}>
         <h3 className={styles.filterSubtitle}>Категории</h3>
-        <div className={styles.checkboxGroup} >
-          {availableCategories.map((category) => (
-            <label key={category} className={styles.checkboxLabel}>
-              <input
-                type='checkbox'
-                name='category'
-                value={category}
-                checked={categories.includes(category)}
-                onChange={this.handleCategoryChange}
-              />
-              <span className={styles.checkmark} />
-              {category}
-            </label>
-          ))}
-        </div>
+        {availableCategories.length > 10 ? (
+          <div className={styles.checkboxScrollContainer}>
+            {checkboxGroup}
+          </div>
+        ) : (
+          checkboxGroup
+        )}
       </div>
     )
   }
@@ -321,23 +331,35 @@ class BrandFilter extends React.Component {
     const { brands } = this.state;
     const availableBrands = this.props.availableBrands || [];
 
+    const checkboxGroup = (
+      <div className={styles.checkboxGroup}>
+        {availableBrands.map((brand) => (
+          <label key={brand} className={styles.checkboxLabel}>
+            <input
+              type='checkbox'
+              name='brand'
+              value={brand}
+              checked={brands.includes(brand)}
+              onChange={this.handleBrandChange}
+            />
+            <span className={styles.checkmark} />
+            {brand}
+          </label>
+        ))}
+      </div>
+    );
+
     return (
       <div className={styles.filterContainer}>
         <h3 className={styles.filterSubtitle}>Бренд</h3>
         <div className={styles.checkboxGroup} >
-          {availableBrands.map((brand) => (
-            <label key={brand} className={styles.checkboxLabel}>
-              <input
-                type='checkbox'
-                name='brand'
-                value={brand}
-                checked={brands.includes(brand)}
-                onChange={this.handleBrandChange}
-              />
-              <span className={styles.checkmark} />
-              {brand}
-            </label>
-          ))}
+          {availableBrands.length > 10 ? (
+            <div className={styles.checkboxScrollContainer}>
+              {checkboxGroup}
+            </div>
+          ) : (
+            checkboxGroup
+          )}
         </div>
       </div>
     )
@@ -379,23 +401,35 @@ class SizeFilter extends React.Component {
     const { sizes } = this.state;
     const availableSizes = this.props.availableSizes || [];
 
+    const checkboxGroup = (
+      <div className={styles.checkboxGroup}>
+        {availableSizes.map((size) => (
+          <label key={size} className={styles.checkboxLabel}>
+            <input
+              type='checkbox'
+              name='size'
+              value={size}
+              checked={sizes.includes(size)}
+              onChange={this.handleSizeChange}
+            />
+            <span className={styles.checkmark} />
+            {size}
+          </label>
+        ))}
+      </div>
+    );
+
     return (
       <div className={styles.filterContainer}>
         <h3 className={styles.filterSubtitle}>Размер</h3>
         <div className={styles.checkboxGroup} >
-          {availableSizes.map((size) => (
-            <label key={size} className={styles.checkboxLabel}>
-              <input
-                type='checkbox'
-                name='size'
-                value={size}
-                checked={sizes.includes(size)}
-                onChange={this.handleSizeChange}
-              />
-              <span className={styles.checkmark} />
-              {size}
-            </label>
-          ))}
+          {availableSizes.length > 10 ? (
+            <div className={styles.checkboxScrollContainer}>
+              {checkboxGroup}
+            </div>
+          ) : (
+            checkboxGroup
+          )}
         </div>
       </div>
     )

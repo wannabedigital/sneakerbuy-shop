@@ -132,6 +132,31 @@
   border: none;
 }
 
+.checkboxScrollContainer {
+  max-height: 210px;
+  overflow-y: auto;
+  padding-top: 2px;
+  padding-right: 5px;
+}
+
+.checkboxScrollContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.checkboxScrollContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.checkboxScrollContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.checkboxScrollContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .checkboxGroup {
   margin-top: 5px;
   display: flex;
