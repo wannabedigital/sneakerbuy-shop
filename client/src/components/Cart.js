@@ -6,6 +6,9 @@ import styles from '../styles/cart.module.css';
 // Components
 import Image from './Image';
 
+// Services
+import * as cartService from '../services/cartService';
+
 // Images
 import cartIcon from '../img/svg_icons/cart_icon.svg';
 
@@ -31,41 +34,53 @@ class CartModal extends React.Component {
   handleCartSubmit(event) {
     event.preventDefault();
     const { name, email, address, phone } = this.state;
-    const { cart, closeCart, clearCart } = this.props;
+    const { cart, closeCart, clearCart, total } = this.props;
+    const orderData = { name, email, address, phone };
 
-    if (name && email && address && phone && cart.length > 0) {
-      alert(
-        `Заказ на сумму ${this.props.total} ₽ оформлен!\nИмя: ${name}\nEmail: ${email}\nАдрес: ${address}\nТелефон: ${phone}`
-      );
-      clearCart();
-      closeCart();
-      this.setState({ name: '', email: '', address: '', phone: '' });
-    } else {
-      alert('Пожалуйста, заполните все поля и добавьте товары в корзину.');
+    const validation = cartService.validateOrderData(orderData, cart);
+    if (!validation.isValid) {
+      alert(validation.error);
+      return;
     }
+
+    const preparedOrder = cartService.prepareOrderData(orderData, cart, total);
+
+    cartService.submitOrder(preparedOrder)
+      .then(response => {
+        if (response.success) {
+          alert(`Заказ на сумму ${total} ₽ оформлен!\nНомер заказа: ${response.orderId}`);
+          clearCart();
+          closeCart();
+          this.setState({ name: '', email: '', address: '', phone: '' });
+        } else {
+          alert('Ошибка при оформлении заказа. Пожалуйста, попробуйте еще раз.');
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при оформлении заказа:', error);
+        alert('Ошибка при оформлении заказа. Пожалуйста, попробуйте еще раз.');
+      });
   }
 
   render() {
     const { cart, total, removeFromCart, closeCart } = this.props;
     return (
       <div
-        id="cart-modal"
+        id='cart-modal'
         className={styles.cartModal}
         onClick={(e) => e.target.id === 'cart-modal' && closeCart()}
       >
         <div className={styles.cartContent}>
           <h2>Ваш заказ</h2>
-          <div id="cart-items" className={styles.cartItems}>
+          <div id='cart-items' className={styles.cartItems}>
             {cart.map((item) => (
               <div className={styles.cartItem} key={`${item.code}-${item.size}`}>
                 <img
                   src={item.img}
                   alt={`${item.brand} ${item.model}`}
-                  style={{ width: '50px', height: '50px' }}
                 />
                 <span>
-                  {item.brand} {item.model} (Размер: {item.size}) - {item.price} ₽
-                  x {item.quantity}
+                  {item.brand} {item.model} (Размер: {item.size}) - {item.price} ₽ x {item.quantity}
                 </span>
                 <button
                   onClick={() => removeFromCart(item.code, item.size)}
@@ -75,51 +90,51 @@ class CartModal extends React.Component {
               </div>
             ))}
           </div>
-          <form id="cart-form" className={styles.cartForm} onSubmit={this.handleCartSubmit}>
+          <form id='cart-form' className={styles.cartForm} onSubmit={this.handleCartSubmit}>
             <input
-              type="text"
-              id="cart-name"
-              name="name"
-              placeholder="Имя"
+              type='text'
+              id='cart-name'
+              name='name'
+              placeholder='Имя'
               value={this.state.name}
               onChange={this.handleInputChange}
               required
             />
             <input
-              type="email"
-              id="cart-email"
-              name="email"
-              placeholder="Email"
+              type='email'
+              id='cart-email'
+              name='email'
+              placeholder='Email'
               value={this.state.email}
               onChange={this.handleInputChange}
               required
             />
             <input
-              type="text"
-              id="cart-address"
-              name="address"
-              placeholder="Адрес доставки"
+              type='text'
+              id='cart-address'
+              name='address'
+              placeholder='Адрес доставки'
               value={this.state.address}
               onChange={this.handleInputChange}
               required
             />
             <input
-              type="tel"
-              id="cart-phone"
-              name="phone"
-              placeholder="Телефон"
+              type='tel'
+              id='cart-phone'
+              name='phone'
+              placeholder='Телефон'
               value={this.state.phone}
               onChange={this.handleInputChange}
               required
             />
             <div className={styles.cartTotal}>
-              Сумма: <span id="cart-total-amount">{total}</span> ₽
+              Сумма: <span id='cart-total-amount'>{total}</span> ₽
             </div>
-            <button type="submit" className={styles.cartSubmit}>
+            <button type='submit' className={styles.cartSubmit}>
               Оплатить картой
             </button>
           </form>
-          <button id="close-cart" className={styles.closeCart} onClick={closeCart}>
+          <button id='close-cart' className={styles.closeCart} onClick={closeCart}>
             Закрыть
           </button>
         </div>
@@ -132,7 +147,7 @@ class HeaderCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: JSON.parse(localStorage.getItem('cart')) || [],
+      cart: cartService.getCartFromStorage(),
       isCartOpen: false,
     };
     this.openCart = this.openCart.bind(this);
@@ -159,7 +174,7 @@ class HeaderCart extends React.Component {
 
   handleStorageChange() {
     this.setState({
-      cart: JSON.parse(localStorage.getItem('cart')) || [],
+      cart: cartService.getCartFromStorage()
     });
   }
 
@@ -172,28 +187,27 @@ class HeaderCart extends React.Component {
   }
 
   removeFromCart(code, size) {
-    const updatedCart = this.state.cart.filter(
-      (item) => !(item.code === code && item.size === size)
-    );
+    const updatedCart = cartService.removeFromCart(this.state.cart, code, size);
     this.setState({ cart: updatedCart }, () => {
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      cartService.saveCartToStorage(updatedCart);
     });
   }
 
   clearCart() {
-    this.setState({ cart: [] }, () => {
-      localStorage.setItem('cart', JSON.stringify([]));
+    const clearedCart = cartService.clearCart();
+    this.setState({ cart: clearedCart }, () => {
+      cartService.saveCartToStorage(clearedCart);
     });
   }
 
   render() {
     const { cart, isCartOpen } = this.state;
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cartService.calculateCartTotal(cart);
 
     return (
       <div className={styles.headerCart}>
-        <div className={styles.cart} id="cart-icon" onClick={this.openCart}>
-          <Image image={cartIcon} alt="cart" />
+        <div className={styles.cart} id='cart-icon' onClick={this.openCart}>
+          <Image image={cartIcon} alt='cart' />
         </div>
         {isCartOpen && (
           <CartModal

@@ -25,7 +25,7 @@ class PriceFilter extends React.Component {
   handlePriceChange = (e) => {
     const { name, value } = e.target;
     const parsedValue = parseInt(value) || 0;
-    const priceGap = 500;
+    const priceGap = 1;
 
     this.setState(
       ({ minPrice, maxPrice }) => {
@@ -50,7 +50,7 @@ class PriceFilter extends React.Component {
   handleRangeChange = (e) => {
     const { name, value } = e.target;
     const parsedValue = parseInt(value) || 0;
-    const priceGap = 500;
+    const priceGap = 1;
 
     this.setState(
       ({ minPrice, maxPrice }) => {

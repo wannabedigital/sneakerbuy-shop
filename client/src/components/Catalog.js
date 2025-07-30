@@ -11,7 +11,7 @@ import Pagination from './Pagination';
 import UnderDevelope from './UnderDevelope';
 
 // Services
-import { fetchProducts, initializeProducts } from '../services/productService';
+import * as productService from '../services/productService';
 
 class Catalog extends React.Component {
   state = {
@@ -46,7 +46,7 @@ class Catalog extends React.Component {
     this.setState({ loading: true, error: null });
     
     try {
-      const initData = await initializeProducts();
+      const initData = await productService.initializeProducts();
       
       this.setState({
         allProducts: initData.allProducts,
@@ -79,7 +79,7 @@ class Catalog extends React.Component {
     const { allProducts, filters, currentPage, productsPerPage } = this.state;
     
     try {
-      const result = await fetchProducts(
+      const result = await productService.fetchProducts(
         allProducts,
         filters,
         currentPage,
@@ -141,8 +141,17 @@ class Catalog extends React.Component {
 
   resetFilters = () => {
     this.setState({
-      filters: { minPrice: 0, maxPrice: this.state.maxPriceLimit, genders: [], categories: [], brands: [], sizes: [] },
-      filteredProducts: this.state.allProducts,
+      filters: { 
+        minPrice: 0, 
+        maxPrice: this.state.maxPriceLimit, 
+        genders: [], 
+        categories: [], 
+        brands: [], 
+        sizes: [] 
+      },
+      currentPage: 1
+    }, () => {
+      this.loadFilteredProducts();
     });
   };
 

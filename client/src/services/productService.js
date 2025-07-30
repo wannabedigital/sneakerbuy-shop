@@ -1,4 +1,4 @@
-// Когда будет бэк, заменить на реальный API
+// когда будет бэк, заменить на реальный API
 const loadProductsFromJson = async () => {
   try {
     const response = await fetch('/json/products.json');
@@ -56,7 +56,7 @@ export const paginateProducts = (products, page, limit) => {
 };
 
 export const fetchProducts = async (allProducts, filters, page, limit) => {
-  console.log("Вызов fetchProducts с параметрами:", { filters, page, limit });
+  console.log('Вызов fetchProducts с параметрами:', { filters, page, limit });
 
   const filteredProducts = filterProducts(allProducts, filters);
   
